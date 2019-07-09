@@ -20,7 +20,6 @@ class _HBMinePageState extends State<HBMinePage> {
         child: FlatButton(
           child: Text(
             '退出',
-            style: HBTextStyle.largeText1,
           ),
           onPressed: () {
             eventBus.fire(UserAuthEvent(isLogined: false));

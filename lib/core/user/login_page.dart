@@ -158,8 +158,7 @@ class _HBLoginPageState extends State<HBLoginPage> {
           Expanded(
             child: FlatButton(
               color: HBColors.primaryColor,
-              // highlightColor: Theme.of(context).primaryColorLight,
-              // colorBrightness: Theme.of(context).primaryColorBrightness,
+              highlightColor: Theme.of(context).highlightColor,
               child: Text('登录'),
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20.0)),
@@ -185,7 +184,7 @@ class _HBLoginPageState extends State<HBLoginPage> {
           child: Container(),
         ),
         FlatButton(
-          child: Text('注册', style: HBTextStyle.middleRedText),
+          child: Text('注册'),
           onPressed: () {},
         ),
       ]),
