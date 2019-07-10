@@ -1,12 +1,5 @@
 import 'package:flutter/material.dart';
 
-class Page {
-  final Widget widget;
-  final String title;
-
-  Page(this.widget, this.title);
-}
-
 /// 布局演示
 class HBLayoutPage extends StatefulWidget {
   static const String title = '布局演示';

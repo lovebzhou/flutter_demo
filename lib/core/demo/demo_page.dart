@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'animations/animation_demo.dart';
 import 'layout/layout_demo.dart';
+import 'focus_demo/focus_demo.dart';
 
 class Page {
   final Widget widget;
@@ -23,6 +24,7 @@ class _HBDemoPageState extends State<HBDemoPage> {
     Page(HBLayoutPage(), HBLayoutPage.title),
     Page(HBAnimationPage(), HBAnimationPage.title),
     Page(HBLayoutPage(), HBLayoutPage.title),
+    Page(HBFocusPage(), HBFocusPage.title),
   ];
 
   @override
