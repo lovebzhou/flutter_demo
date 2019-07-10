@@ -49,14 +49,40 @@ class _HBLayoutPageState extends State<HBLayoutPage> {
       ],
     );
 
+    Widget row3 = Row(
+      children: <Widget>[
+        const FlutterLogo(),
+        const Text(
+            'Flutter\'s hot reload helps you quickly and easily experiment, build UIs, add features, and fix bug faster. Experience sub-second reload times, without losing state, on emulators, simulators, and hardware for iOS and Android.'),
+        const Icon(Icons.sentiment_very_satisfied),
+      ],
+    );
+
+    Widget row4 = Row(
+      children: <Widget>[
+        const FlutterLogo(),
+        Expanded(
+          child: Text(
+              'Flutter\'s hot reload helps you quickly and easily experiment, build UIs, add features, and fix bug faster. Experience sub-second reload times, without losing state, on emulators, simulators, and hardware for iOS and Android.'),
+        ),
+        const Icon(Icons.sentiment_very_satisfied),
+      ],
+    );
+    final lineSpace = Divider(height: 20.0,);
     return Scaffold(
       appBar: AppBar(
         title: Text('演示'),
       ),
       body: ListView(
+        padding: EdgeInsets.all(12.0),
         children: <Widget>[
           row1,
+          lineSpace,
           row2,
+          lineSpace,
+          row3,
+          lineSpace,
+          row4,
         ],
       ),
     );
