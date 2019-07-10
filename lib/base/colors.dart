@@ -13,6 +13,10 @@ class HBColors {
 
   static const Color dividerColor = Color(0xFFE1E1E1);
 
+  static const Color actionIconColor = Color(0xFFC7C7CD);
+
+  static const Color iconColor = Color(0xFF8E8E93);
+
   static Color fromHex(String hexColor) {
     hexColor = hexColor.toUpperCase().replaceAll("#", "");
     if (hexColor.length == 6) {

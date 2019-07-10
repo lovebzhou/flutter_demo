@@ -44,30 +44,40 @@ class _HBAnimationPageState extends State<HBAnimationPage>
         );
       },
     );
+
+    Widget actionButtons = Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: <Widget>[
+        RaisedButton(
+          textColor: Colors.white,
+          child: Text("forward"),
+          onPressed: () {
+            controller.forward();
+          },
+        ),
+        RaisedButton(
+          child: Text('reverse'),
+          onPressed: () {
+            controller.reverse();
+          },
+        ),
+      ],
+    );
+
+    actionButtons = Container(
+      padding: EdgeInsets.symmetric(horizontal: 16.0),
+      child: actionButtons,
+    );
+
     final children = [
       animationImage,
-      Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          RaisedButton(
-            child: Text("forward"),
-            onPressed: () {
-              controller.forward();
-            },
-          ),
-          RaisedButton(
-            child: Text('reverse'),
-            onPressed: () {
-              controller.reverse();
-            },
-          ),
-        ],
-      ),
+      actionButtons,
       Container(
         height: 100.0,
         color: Colors.blue.shade100,
       ),
     ];
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Animation'),

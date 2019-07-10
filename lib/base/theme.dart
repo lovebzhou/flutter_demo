@@ -18,10 +18,10 @@ class HBTheme extends Theme {
       color: HBColors.fromHex("#F8F8F8"),
       elevation: 0.5,
       iconTheme: IconThemeData(
-        color: HBColors.primaryColor,
+        color: HBColors.iconColor,
       ),
       actionsIconTheme: IconThemeData(
-        color: HBColors.primaryColor,
+        color: HBColors.actionIconColor,
       ),
     ),
 
@@ -32,11 +32,10 @@ class HBTheme extends Theme {
 
     textTheme: TextTheme(
       body1: TextStyle(color: Color(0xFF333333), fontSize: 15.0),
+      button: TextStyle(color: Colors.white),
     ),
 
     buttonTheme: ButtonThemeData(
-      buttonColor: HBColors.primaryColor,
-      highlightColor: HBColors.primaryHighlightColor,
       splashColor: Colors.transparent,
     ),
 
