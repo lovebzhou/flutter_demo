@@ -58,6 +58,8 @@ class _HBMainPageState extends State<HBMainPage>
 
   @override
   Widget build(BuildContext context) {
+    final mq = MediaQuery.of(context);
+
     return new Scaffold(
       key: mainScaffoldKey,
       body: TabBarView(
@@ -71,26 +73,27 @@ class _HBMainPageState extends State<HBMainPage>
         ],
       ),
       bottomNavigationBar: Material(
-          color: const Color(0xFFF0EEEF),
-          child: SafeArea(
-            child: Container(
-              height: 65.0,
-              decoration: BoxDecoration(
-                color: const Color(0xFFF0F0F0),
-                border: Border(
-                    top: BorderSide(
-                        color: Theme.of(context).dividerColor, width: 0.5)),
-              ),
-              child: TabBar(
-                controller: controller,
-                indicatorWeight: 1,
-                tabs: tabDatas
-                    .map((data) =>
-                        new Tab(text: data['text'], icon: data['normal']))
-                    .toList(),
+        color: const Color(0xFFF0EEEF),
+        child: SafeArea(
+          child: Container(
+            decoration: BoxDecoration(
+              color: const Color(0xFFF0EEEF),
+              border: Border(
+                top: BorderSide(
+                    color: Theme.of(context).dividerColor, width: 1.0 / mq.devicePixelRatio),
               ),
             ),
-          )),
+            child: TabBar(
+              controller: controller,
+              indicatorWeight: 1,
+              tabs: tabDatas
+                  .map((data) =>
+                      new Tab(text: data['text'], icon: data['normal']))
+                  .toList(),
+            ),
+          ),
+        ),
+      ),
     );
   }
 }

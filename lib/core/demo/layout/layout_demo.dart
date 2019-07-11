@@ -61,6 +61,30 @@ class _HBLayoutPageState extends State<HBLayoutPage> {
         const Icon(Icons.sentiment_very_satisfied),
       ],
     );
+
+    Widget row5 =  Row(
+         children: <Widget>[
+           Expanded(
+             flex: 2,
+             child: Container(
+               color: Colors.red,
+               height: 100,
+             ),
+           ),
+           Container(
+             color: Colors.blue,
+             height: 100,
+             width: 50,
+           ),
+           Expanded(
+             flex: 1,
+             child: Container(
+               color: Colors.red,
+               height: 100,
+             ),
+           ),
+         ],
+       );
     final lineSpace = Divider(height: 20.0,);
     return Scaffold(
       appBar: AppBar(
@@ -76,6 +100,8 @@ class _HBLayoutPageState extends State<HBLayoutPage> {
           row3,
           lineSpace,
           row4,
+          lineSpace,
+          row5,
         ],
       ),
     );
