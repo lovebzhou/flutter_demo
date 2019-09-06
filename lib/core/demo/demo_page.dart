@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_demo/core/demo/image/demo_crop_image.dart';
+import 'package:flutter_demo/core/demo/image/demo_multi_image_picker.dart';
 import 'package:flutter_demo/core/demo/widgets/demo_image.dart';
 import 'package:flutter_demo/core/demo/widgets/demo_wrap.dart';
 import 'animations/animation_demo.dart';
@@ -31,6 +32,7 @@ class _HBDemoPageState extends State<HBDemoPage> {
     Page(DemoWrap(), DemoWrap.title),
     Page(DemoImage(), DemoImage.title),
     Page(DemoCropImage(), DemoCropImage.title),
+    Page(DemoMultiImagePicker(), DemoMultiImagePicker.title),
   ];
 
   @override

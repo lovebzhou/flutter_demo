@@ -46,6 +46,9 @@ dependencies:
   # https://pub.dev/packages/image_picker
   image_picker: ^0.6.1+4
 
+  # https://pub.dev/packages/multi_image_picker
+  multi_image_picker: ^4.5.3
+
   # https://pub.dev/packages/device_info
   device_info: ^0.3.0
 
