@@ -1,5 +1,63 @@
 import 'package:flutter/material.dart';
 
+class ActorFilterEntry {
+  const ActorFilterEntry(this.name, this.initials);
+  final String name;
+  final String initials;
+}
+
+class CastFilter extends StatefulWidget {
+  @override
+  State createState() => CastFilterState();
+}
+
+class CastFilterState extends State<CastFilter> {
+  final List<ActorFilterEntry> _cast = <ActorFilterEntry>[
+    const ActorFilterEntry('Aaron Burr', 'AB'),
+    const ActorFilterEntry('Alexander Hamilton', 'AH'),
+    const ActorFilterEntry('Eliza Hamilton', 'EH'),
+    const ActorFilterEntry('James Madison', 'JM'),
+  ];
+  List<String> _filters = <String>[];
+
+  Iterable<Widget> get actorWidgets sync* {
+    for (ActorFilterEntry actor in _cast) {
+      yield Padding(
+        padding: const EdgeInsets.all(4.0),
+        child: FilterChip(
+          avatar: CircleAvatar(child: Text(actor.initials)),
+          label: Text(actor.name),
+          selected: _filters.contains(actor.name),
+          onSelected: (bool value) {
+            setState(() {
+              if (value) {
+                _filters.add(actor.name);
+              } else {
+                _filters.removeWhere((String name) {
+                  return name == actor.name;
+                });
+              }
+            });
+          },
+        ),
+      );
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        Wrap(
+          children: actorWidgets.toList(),
+        ),
+        Text('Look for: ${_filters.join(', ')}'),
+      ],
+    );
+  }
+}
+
 class DemoWrap extends StatelessWidget {
   static const String title = 'Wrap演示';
 
@@ -23,26 +81,58 @@ class DemoWrap extends StatelessWidget {
               avatar: CircleAvatar(
                   backgroundColor: Colors.blue.shade900, child: Text('AH')),
               label: Text('Hamilton'),
+              shape: RoundedRectangleBorder(
+                side: BorderSide(color: Colors.blue, width: 0.5),
+                borderRadius: BorderRadius.circular(6.0),
+              ),
+              onDeleted: () {},
             ),
             Chip(
               avatar: CircleAvatar(
-                  backgroundColor: Colors.blue.shade900, child: Text('ML')),
+                backgroundColor: Colors.blue.shade900,
+                child: Text('ML'),
+              ),
               label: Text('Lafayette Addf'),
+              shape: ContinuousRectangleBorder(
+                side: BorderSide(color: Colors.green, width: 0.5),
+                borderRadius: BorderRadius.all(
+                  Radius.circular(8.0),
+                ),
+              ),
             ),
-            Chip(
+            InputChip(
               avatar: CircleAvatar(
                   backgroundColor: Colors.blue.shade900, child: Text('HM')),
-              label: Text('Mulligan Hello World'),
+              label: Text('Input Chip(not selected)'),
+              shape: RoundedRectangleBorder(
+                side: BorderSide(color: Colors.grey, width: 0.5),
+                borderRadius: BorderRadius.circular(20.0),
+              ),
+              onPressed: () {
+                print('On Pressed');
+              },
             ),
-            Chip(
+            InputChip(
               avatar: CircleAvatar(
                   backgroundColor: Colors.blue.shade900, child: Text('JL')),
               label: Text('Laurens'),
+              shape: RoundedRectangleBorder(
+                side: BorderSide(color: Colors.blue, width: 0.5),
+                borderRadius: BorderRadius.circular(20.0),
+              ),
+              selected: true,
             ),
-            Chip(
+            ChoiceChip(
+              selected: false,
               avatar: CircleAvatar(
                   backgroundColor: Colors.blue.shade900, child: Text('AH')),
-              label: Text('Hamilton'),
+              label: Text('ChoiceChip(false)'),
+            ),
+            ChoiceChip(
+              selected: true,
+              avatar: CircleAvatar(
+                  backgroundColor: Colors.blue.shade900, child: Text('AH')),
+              label: Text('ChoiceChip(true)'),
             ),
             Chip(
               avatar: CircleAvatar(
@@ -72,6 +162,11 @@ class DemoWrap extends StatelessWidget {
       child: ListView(
         children: <Widget>[
           _buildWrap1(context),
+          Divider(),
+          ListTile(
+            title: Text('FilterChip'),
+          ),
+          CastFilter(),
         ],
       ),
     );
