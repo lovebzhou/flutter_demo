@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_demo/core/demo/widgets/demo_wrap.dart';
 import 'animations/animation_demo.dart';
 import 'layout/layout_demo.dart';
 import 'focus_demo/focus_demo.dart';
@@ -25,6 +26,7 @@ class _HBDemoPageState extends State<HBDemoPage> {
     Page(HBAnimationPage(), HBAnimationPage.title),
     Page(HBLayoutPage(), HBLayoutPage.title),
     Page(HBFocusPage(), HBFocusPage.title),
+    Page(DemoWrap(), DemoWrap.title),
   ];
 
   @override
