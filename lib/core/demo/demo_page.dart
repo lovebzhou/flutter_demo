@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_demo/core/demo/image/demo_crop_image.dart';
 import 'package:flutter_demo/core/demo/image/demo_image_picker.dart';
 import 'package:flutter_demo/core/demo/image/demo_multi_image_picker.dart';
-import 'package:flutter_demo/core/demo/widgets/demo_image.dart';
+import 'package:flutter_demo/core/demo/image/demo_image.dart';
+import 'package:flutter_demo/core/demo/image/photo_picker_demo.dart';
 import 'package:flutter_demo/core/demo/widgets/demo_wrap.dart';
 import 'animations/animation_demo.dart';
 import 'layout/layout_demo.dart';
@@ -34,6 +35,7 @@ class _HBDemoPageState extends State<HBDemoPage> {
     Page(DemoImage(), DemoImage.title),
     Page(DemoCropImage(), DemoCropImage.title),
     Page(DemoImagePicker(), DemoImagePicker.title),
+    Page(DemoPhotoPicker(), DemoPhotoPicker.title),
     Page(DemoMultiImagePicker(), DemoMultiImagePicker.title),
   ];
 

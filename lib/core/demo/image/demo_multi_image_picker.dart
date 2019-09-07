@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:multi_image_picker/multi_image_picker.dart';
 
 class DemoMultiImagePicker extends StatefulWidget {
-  static const String title = '照片多选演示';
+  static const String title = 'MultiImagePicker Demo';
   @override
   _DemoMultiImagePickerState createState() => new _DemoMultiImagePickerState();
 }
@@ -37,16 +37,16 @@ class _DemoMultiImagePickerState extends State<DemoMultiImagePicker> {
 
     try {
       resultList = await MultiImagePicker.pickImages(
-        maxImages: 300,
-        enableCamera: true,
+        maxImages: 9,
+        enableCamera: false,
         selectedAssets: images,
         cupertinoOptions: CupertinoOptions(takePhotoIcon: "chat"),
         materialOptions: MaterialOptions(
           actionBarColor: "#abcdef",
           actionBarTitle: "Example App",
-          allViewTitle: "All Photos",
+          allViewTitle: "全部照片",
           useDetailsView: true,
-          selectCircleStrokeColor: "#000000",
+          selectCircleStrokeColor: "#FFFFFF",
         ),
       );
 

@@ -130,6 +130,20 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "1.7.0"
+  photo:
+    dependency: "direct main"
+    description:
+      name: photo
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "0.3.4+1"
+  photo_manager:
+    dependency: transitive
+    description:
+      name: photo_manager
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "0.3.5"
   quiver:
     dependency: transitive
     description:

@@ -53,6 +53,9 @@ dependencies:
   # https://pub.dev/packages/multi_image_picker
   multi_image_picker: ^4.5.3
 
+  # https://pub.dev/packages/photo
+  photo: ^0.3.4+1
+
   #
   # --------
   #

@@ -23,7 +23,11 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>$(PRODUCT_NAME) photo use</string>
+	<string>$(PRODUCT_NAME) 相册访问测试</string>
+	<key>NSCameraUsageDescription</key>
+	<string>$(PRODUCT_NAME) 相机访问测试</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>$(PRODUCT_NAME) 麦克风访问测试</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
