@@ -1,6 +1,5 @@
-import 'package:flutter/material.dart';
 import 'dart:async';
-
+import 'package:flutter/material.dart';
 import 'package:multi_image_picker/multi_image_picker.dart';
 
 class DemoMultiImagePicker extends StatefulWidget {
@@ -46,7 +45,7 @@ class _DemoMultiImagePickerState extends State<DemoMultiImagePicker> {
           actionBarColor: "#abcdef",
           actionBarTitle: "Example App",
           allViewTitle: "All Photos",
-          useDetailsView: false,
+          useDetailsView: true,
           selectCircleStrokeColor: "#000000",
         ),
       );

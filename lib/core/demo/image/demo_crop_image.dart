@@ -6,7 +6,7 @@ import 'package:image_crop/image_crop.dart';
 import 'package:image_picker/image_picker.dart';
 
 class DemoCropImage extends StatefulWidget {
-  static const String title = '图片剪裁演示';
+  static const String title = 'image_crop图片剪裁演示';
   @override
   _DemoCropImageState createState() => new _DemoCropImageState();
 }
