@@ -10,8 +10,12 @@ class DemoMultiImagePicker extends StatefulWidget {
 
 class _DemoMultiImagePickerState extends State<DemoMultiImagePicker> {
   List<Asset> images = List<Asset>();
-  String _error = 'No Error Dectected';
-
+  String _error = '';
+  @override
+  void dispose() {
+    print('#dispose#${runtimeType.toString()}');
+    super.dispose();
+  }
   @override
   void initState() {
     super.initState();
@@ -33,20 +37,21 @@ class _DemoMultiImagePickerState extends State<DemoMultiImagePicker> {
 
   Future<void> loadAssets() async {
     List<Asset> resultList = List<Asset>();
-    String error = 'No Error Dectected';
+    String error = '';
 
     try {
       resultList = await MultiImagePicker.pickImages(
         maxImages: 9,
         enableCamera: false,
-        selectedAssets: images,
+        // selectedAssets: images,
         cupertinoOptions: CupertinoOptions(takePhotoIcon: "chat"),
         materialOptions: MaterialOptions(
-          actionBarColor: "#abcdef",
-          actionBarTitle: "Example App",
+          actionBarColor: "#4A4A4A",
+          statusBarColor: '#4A4A4A',
+          selectCircleStrokeColor: "#FFFFFF",
+          actionBarTitle: "选择照片",
           allViewTitle: "全部照片",
           useDetailsView: true,
-          selectCircleStrokeColor: "#FFFFFF",
         ),
       );
 
@@ -63,29 +68,39 @@ class _DemoMultiImagePickerState extends State<DemoMultiImagePicker> {
     // setState to update our non-existent appearance.
     if (!mounted) return;
 
+    if (resultList.isEmpty) return;
+
     setState(() {
-      images = resultList;
+      images.addAll(resultList);
       _error = error;
     });
   }
 
   @override
   Widget build(BuildContext context) {
+    List<Widget> children = <Widget>[
+      Expanded(
+        child: buildGridView(),
+      )
+    ];
+
+    children.add(
+      RaisedButton(
+        child: Text("Pick images"),
+        onPressed: loadAssets,
+      ),
+    );
+
+    if (_error.isNotEmpty) {
+      children.add(Center(child: Text('Error: $_error')));
+    }
+
     return Scaffold(
       appBar: new AppBar(
-        title: const Text('Plugin example app'),
+        title: const Text(DemoMultiImagePicker.title),
       ),
       body: Column(
-        children: <Widget>[
-          Center(child: Text('Error: $_error')),
-          RaisedButton(
-            child: Text("Pick images"),
-            onPressed: loadAssets,
-          ),
-          Expanded(
-            child: buildGridView(),
-          )
-        ],
+        children: children,
       ),
     );
   }

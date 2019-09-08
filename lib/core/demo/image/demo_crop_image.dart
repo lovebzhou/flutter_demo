@@ -19,10 +19,12 @@ class _DemoCropImageState extends State<DemoCropImage> {
 
   @override
   void dispose() {
-    super.dispose();
+    print('#dispose#${runtimeType.toString()}');
     _file?.delete();
     _sample?.delete();
     _lastCropped?.delete();
+
+    super.dispose();
   }
 
   @override

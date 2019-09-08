@@ -11,6 +11,12 @@ class DemoImagePicker extends StatefulWidget {
 class _DemoImagePickerState extends State<DemoImagePicker> {
   File _image;
 
+  @override
+  void dispose() {
+    print('#dispose#${runtimeType.toString()}');
+    super.dispose();
+  }
+
   Future getImage(ImageSource source) async {
     var image = await ImagePicker.pickImage(source: source);
 
