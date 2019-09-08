@@ -26,17 +26,15 @@ class HBDemoPage extends StatefulWidget {
 
 class _HBDemoPageState extends State<HBDemoPage> {
   final _pages = [
-    Page(HBAnimationPage(), HBAnimationPage.title),
-    Page(HBLayoutPage(), HBLayoutPage.title),
+    Page(DemoImagePicker(), DemoImagePicker.title),
+    Page(DemoPhotoPicker(), DemoPhotoPicker.title),
+    Page(DemoMultiImagePicker(), DemoMultiImagePicker.title),
     Page(HBAnimationPage(), HBAnimationPage.title),
     Page(HBLayoutPage(), HBLayoutPage.title),
     Page(HBFocusPage(), HBFocusPage.title),
     Page(DemoWrap(), DemoWrap.title),
     Page(DemoImage(), DemoImage.title),
     Page(DemoCropImage(), DemoCropImage.title),
-    Page(DemoImagePicker(), DemoImagePicker.title),
-    Page(DemoPhotoPicker(), DemoPhotoPicker.title),
-    Page(DemoMultiImagePicker(), DemoMultiImagePicker.title),
   ];
 
   @override

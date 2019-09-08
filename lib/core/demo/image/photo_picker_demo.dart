@@ -18,6 +18,10 @@ class _DemoPhotoPickerState extends State<DemoPhotoPicker>
   @override
   void dispose() {
     print('#dispose#${runtimeType.toString()}');
+    
+    assets.clear();
+    PhotoManager.releaseCache();
+
     super.dispose();
   }
 

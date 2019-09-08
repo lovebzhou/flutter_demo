@@ -9,19 +9,20 @@ class DemoImagePicker extends StatefulWidget {
 }
 
 class _DemoImagePickerState extends State<DemoImagePicker> {
-  File _image;
+  File _file;
 
   @override
   void dispose() {
     print('#dispose#${runtimeType.toString()}');
+    _file?.delete();
     super.dispose();
   }
 
   Future getImage(ImageSource source) async {
-    var image = await ImagePicker.pickImage(source: source);
-
+    var file = await ImagePicker.pickImage(source: source);
+    _file?.delete();
     setState(() {
-      _image = image;
+      _file = file;
     });
   }
 
@@ -41,9 +42,9 @@ class _DemoImagePickerState extends State<DemoImagePicker> {
         Expanded(
           child: SingleChildScrollView(
             child: Center(
-              child: _image == null
+              child: _file == null
                   ? Text('No image selected.')
-                  : Image.file(_image),
+                  : Image.file(_file),
             ),
           ),
         ),

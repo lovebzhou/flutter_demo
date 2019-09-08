@@ -9,13 +9,16 @@ class DemoMultiImagePicker extends StatefulWidget {
 }
 
 class _DemoMultiImagePickerState extends State<DemoMultiImagePicker> {
-  List<Asset> images = List<Asset>();
-  String _error = '';
+  List<Asset> _assets = List<Asset>();
   @override
   void dispose() {
     print('#dispose#${runtimeType.toString()}');
+
+    _assets = null;
+
     super.dispose();
   }
+
   @override
   void initState() {
     super.initState();
@@ -24,8 +27,8 @@ class _DemoMultiImagePickerState extends State<DemoMultiImagePicker> {
   Widget buildGridView() {
     return GridView.count(
       crossAxisCount: 3,
-      children: List.generate(images.length, (index) {
-        Asset asset = images[index];
+      children: List.generate(_assets.length, (index) {
+        Asset asset = _assets[index];
         return AssetThumb(
           asset: asset,
           width: 300,
@@ -36,15 +39,20 @@ class _DemoMultiImagePickerState extends State<DemoMultiImagePicker> {
   }
 
   Future<void> loadAssets() async {
-    List<Asset> resultList = List<Asset>();
-    String error = '';
+    List<Asset> assets = List<Asset>();
 
     try {
-      resultList = await MultiImagePicker.pickImages(
+      assets = await MultiImagePicker.pickImages(
         maxImages: 9,
         enableCamera: false,
         // selectedAssets: images,
-        cupertinoOptions: CupertinoOptions(takePhotoIcon: "chat"),
+        cupertinoOptions: CupertinoOptions(
+          // takePhotoIcon: "chat",
+          // selectionFillColor: '#C91B3A',
+          // selectionCharacter: '#FFFFFF',
+          // selectionStrokeColor: '#C91B3A',
+          // backgroundColor: '#4A4A4A',
+        ),
         materialOptions: MaterialOptions(
           actionBarColor: "#4A4A4A",
           statusBarColor: '#4A4A4A',
@@ -54,25 +62,16 @@ class _DemoMultiImagePickerState extends State<DemoMultiImagePicker> {
           useDetailsView: true,
         ),
       );
-
-      for (var r in resultList) {
-        var t = await r.filePath;
-        print(t);
-      }
     } on Exception catch (e) {
-      error = e.toString();
+      print('${e.toString()}');
     }
 
-    // If the widget was removed from the tree while the asynchronous platform
-    // message was in flight, we want to discard the reply rather than calling
-    // setState to update our non-existent appearance.
     if (!mounted) return;
 
-    if (resultList.isEmpty) return;
+    if (assets.isEmpty) return;
 
     setState(() {
-      images.addAll(resultList);
-      _error = error;
+      _assets.addAll(assets);
     });
   }
 
@@ -90,10 +89,6 @@ class _DemoMultiImagePickerState extends State<DemoMultiImagePicker> {
         onPressed: loadAssets,
       ),
     );
-
-    if (_error.isNotEmpty) {
-      children.add(Center(child: Text('Error: $_error')));
-    }
 
     return Scaffold(
       appBar: new AppBar(
