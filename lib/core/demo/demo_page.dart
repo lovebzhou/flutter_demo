@@ -4,6 +4,7 @@ import 'package:flutter_demo/core/demo/image/demo_image_picker.dart';
 import 'package:flutter_demo/core/demo/image/demo_multi_image_picker.dart';
 import 'package:flutter_demo/core/demo/image/demo_image.dart';
 import 'package:flutter_demo/core/demo/image/photo_picker_demo.dart';
+import 'package:flutter_demo/core/demo/log/demo_alice.dart';
 import 'package:flutter_demo/core/demo/widgets/demo_card.dart';
 import 'package:flutter_demo/core/demo/widgets/demo_wrap.dart';
 import 'animations/animation_demo.dart';
@@ -32,6 +33,7 @@ class _HBDemoPageState extends State<HBDemoPage> {
     Page(DemoMultiImagePicker(), DemoMultiImagePicker.title),
     Page(HBAnimationPage(), HBAnimationPage.title),
     Page(HBLayoutPage(), HBLayoutPage.title),
+    Page(DemoAlicePage(), DemoAlicePage.title),
     Page(DemoCardPage(), DemoCardPage.title),
     Page(HBFocusPage(), HBFocusPage.title),
     Page(DemoWrap(), DemoWrap.title),

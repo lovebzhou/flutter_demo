@@ -36,6 +36,9 @@ dependencies:
   # https://pub.dev/packages/synchronized
   synchronized: ^2.1.0+1
 
+  # https://pub.dev/packages/alice
+  alice: ^0.0.13
+
   #
   # ============================ Plugins ================================
   #
