@@ -32,7 +32,7 @@ class _HBAnimationPageState extends State<HBAnimationPage>
     final animationImage = AnimatedBuilder(
       animation: animation,
       child: Image.asset(
-        "assets/image/4.jpg",
+        "assets/images/4.jpg",
         fit: BoxFit.cover,
       ),
       builder: (BuildContext ctx, Widget child) {
