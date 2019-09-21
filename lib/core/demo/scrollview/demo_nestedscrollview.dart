@@ -41,9 +41,6 @@ class _DemoNestedScrollViewState extends State<DemoNestedScrollView>
               flexibleSpace: FlexibleSpaceBar(
                 background: Image.asset(
                   'assets/images/6.jpg',
-                  // width: double.infinity,
-                  // repeat: ImageRepeat.repeat,
-                  // height: double.infinity,
                   fit: BoxFit.cover,
                 ),
               ),
