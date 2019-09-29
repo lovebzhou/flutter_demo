@@ -59,6 +59,9 @@ dependencies:
   # https://pub.dev/packages/photo
   photo: ^0.3.4+1
 
+  # https://pub.dev/packages/file_picker
+  file_picker: ^1.4.2
+
   #
   # --------
   #

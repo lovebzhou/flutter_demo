@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_demo/core/demo/file/file_picker_demo.dart';
 import 'package:flutter_demo/core/demo/image/demo_crop_image.dart';
 import 'package:flutter_demo/core/demo/image/demo_image_picker.dart';
 import 'package:flutter_demo/core/demo/image/demo_multi_image_picker.dart';
@@ -31,6 +32,7 @@ class _HBDemoPageState extends State<HBDemoPage> {
   final _pages = [
     Page(DemoNestedScrollView(), DemoNestedScrollView.title),
     Page(DemoImagePicker(), DemoImagePicker.title),
+    Page(FilePickerDemo(), FilePickerDemo.title),
     Page(DemoPhotoPicker(), DemoPhotoPicker.title),
     Page(DemoMultiImagePicker(), DemoMultiImagePicker.title),
     Page(HBAnimationPage(), HBAnimationPage.title),
