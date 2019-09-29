@@ -70,7 +70,9 @@ class _DemoImagePickerState extends State<DemoImagePicker> {
                 RaisedButton(
                   child: Text('Video'),
                   onPressed: () {
-                    ImagePicker.pickVideo(source: ImageSource.gallery).then((File file) {
+                    ImagePicker.pickVideo(source: ImageSource.gallery)
+                        .then((File file) {
+                      if (file == null) return;
                       print(file.path);
                     });
                   },
