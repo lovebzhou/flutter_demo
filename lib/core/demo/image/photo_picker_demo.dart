@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'dart:typed_data';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -161,6 +162,14 @@ class _DemoPhotoPickerState extends State<DemoPhotoPicker>
     if (!mounted) return;
 
     if (imgList.isEmpty) return;
+
+    imgList.forEach((img) async {
+      File file = await img.file;
+      int length = await file.length();
+      img.file.then((file) {
+        print('${file.path} - $length');
+      });
+    });
 
     setState(() {
       assets.addAll(imgList);
