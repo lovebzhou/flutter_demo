@@ -1,3 +1,4 @@
+import 'package:dropdown/dropdown.dart';
 import 'package:flutter/material.dart';
 
 /// 首页
@@ -17,7 +18,19 @@ class _HBHomePageState extends State<HBHomePage> {
         title: Text(HBHomePage.title),
       ),
       body: Center(
-        child: Text(HBHomePage.title),
+        child: SingleChildScrollView(
+          child: Column(
+            children: <Widget>[
+              Text(HBHomePage.title),
+              RaisedButton(
+                child: Text("Dropdown Show"),
+                onPressed: () {
+                  Dropdown.show("Hello world!", Colors.green, Colors.black);
+                },
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_demo/core/demo/dropdown/demo_dropdown_menu.dart';
 import 'package:flutter_demo/core/demo/file/file_picker_demo.dart';
 import 'package:flutter_demo/core/demo/image/demo_crop_image.dart';
 import 'package:flutter_demo/core/demo/image/demo_image_picker.dart';
@@ -30,6 +31,7 @@ class HBDemoPage extends StatefulWidget {
 
 class _HBDemoPageState extends State<HBDemoPage> {
   final _pages = [
+    Page(DropdownMenuDemo(), DropdownMenuDemo.title),
     Page(DemoNestedScrollView(), DemoNestedScrollView.title),
     Page(DemoImagePicker(), DemoImagePicker.title),
     Page(FilePickerDemo(), FilePickerDemo.title),

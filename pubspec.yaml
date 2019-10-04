@@ -39,6 +39,12 @@ dependencies:
   # https://pub.dev/packages/alice
   alice: ^0.0.13
 
+  # https://pub.dev/packages/dropdown_menu
+  dropdown_menu: ^1.1.1
+  
+  # https://pub.dev/packages/dropdown
+  dropdown: ^1.0.2
+
   #
   # ============================ Plugins ================================
   #
