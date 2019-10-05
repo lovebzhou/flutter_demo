@@ -39,21 +39,15 @@ class PopupMenu {
 
   Widget _background(Widget child) {
     return GestureDetector(
-      child: WillPopScope(
-        child: Container(
-          width: double.maxFinite,
-          height: double.maxFinite,
-          color: Colors.white.withOpacity(0.0),
-          child: Stack(
-            children: <Widget>[
-              child,
-            ],
-          ),
+      child: Container(
+        width: double.maxFinite,
+        height: double.maxFinite,
+        color: Colors.white.withOpacity(0.0),
+        child: Stack(
+          children: <Widget>[
+            child,
+          ],
         ),
-        onWillPop: () async {
-          dismiss();
-          return false;
-        },
       ),
       onTap: () {
         dismiss();
