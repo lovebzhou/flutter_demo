@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_demo/core/demo/bottom_sheet/bottom_sheet_demo.dart';
 import 'package:flutter_demo/core/demo/dropdown/demo_dropdown_menu.dart';
 import 'package:flutter_demo/core/demo/file/file_picker_demo.dart';
 import 'package:flutter_demo/core/demo/image/demo_crop_image.dart';
@@ -8,6 +9,7 @@ import 'package:flutter_demo/core/demo/image/demo_image.dart';
 import 'package:flutter_demo/core/demo/image/photo_picker_demo.dart';
 import 'package:flutter_demo/core/demo/log/demo_alice.dart';
 import 'package:flutter_demo/core/demo/navigator/navigator_demo.dart';
+import 'package:flutter_demo/core/demo/alert_dialog/alert_diaglog_demo.dart';
 import 'package:flutter_demo/core/demo/scrollview/demo_nestedscrollview.dart';
 import 'package:flutter_demo/core/demo/widgets/demo_card.dart';
 import 'package:flutter_demo/core/demo/widgets/demo_wrap.dart';
@@ -32,6 +34,8 @@ class HBDemoPage extends StatefulWidget {
 
 class _HBDemoPageState extends State<HBDemoPage> {
   final _pages = [
+    Page(BottomSheetDemo(), BottomSheetDemo.title),
+    Page(AlertDialogDemo(), AlertDialogDemo.title),
     Page(NavigatorDemo(), NavigatorDemo.title),
     Page(DropdownMenuDemo(), DropdownMenuDemo.title),
     Page(DemoNestedScrollView(), DemoNestedScrollView.title),

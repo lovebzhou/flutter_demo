@@ -10,6 +10,54 @@ class NavigatorDemo extends StatelessWidget {
       // itemExtent: 44,
       children: <Widget>[
         RaisedButton(
+          child: Text('Normal Push(MaterialPageRoute)'),
+          onPressed: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (_) => _DemoRoute(
+                  text: 'Normal Push(MaterialPageRoute)',
+                ),
+              ),
+            );
+          },
+        ),
+        RaisedButton(
+          child: Text('Normal Push(PageRouteBuilder)-red'),
+          onPressed: () {
+            Navigator.of(context).push(
+              PageRouteBuilder(
+                opaque: false,
+                barrierDismissible: true,
+                barrierColor: Colors.red.withOpacity(0.4),
+                pageBuilder: (BuildContext context, _, __) {
+                  return _DemoRoute(text: 'normal push');
+                },
+                transitionsBuilder:
+                    (___, Animation<double> animation, ____, Widget child) {
+                  return child;
+                },
+              ),
+            );
+          },
+        ),
+        RaisedButton(
+          child: Text('Normal Push(PageRouteBuilder)'),
+          onPressed: () {
+            Navigator.of(context).push(
+              PageRouteBuilder(
+                opaque: false,
+                pageBuilder: (BuildContext context, _, __) {
+                  return _DemoRoute(text: 'normal push');
+                },
+                transitionsBuilder:
+                    (___, Animation<double> animation, ____, Widget child) {
+                  return child;
+                },
+              ),
+            );
+          },
+        ),
+        RaisedButton(
           child: Text('Fade Push'),
           onPressed: () {
             _DemoRoute.fadePush(context);
@@ -35,13 +83,18 @@ class NavigatorDemo extends StatelessWidget {
 }
 
 class _DemoRoute extends StatelessWidget {
+  final String text;
+  _DemoRoute({this.text});
+
   static void rotatePush(BuildContext context) {
     Navigator.push(
       context,
       PageRouteBuilder(
         opaque: false,
         pageBuilder: (BuildContext context, _, __) {
-          return _DemoRoute();
+          return _DemoRoute(
+            text: 'rotate push',
+          );
         },
         // barrierColor: Colors.black26,
         transitionsBuilder:
@@ -64,7 +117,9 @@ class _DemoRoute extends StatelessWidget {
       PageRouteBuilder(
         opaque: false,
         pageBuilder: (BuildContext context, _, __) {
-          return _DemoRoute();
+          return _DemoRoute(
+            text: 'fade push',
+          );
         },
         // barrierColor: Colors.black26,
         transitionsBuilder:
@@ -84,7 +139,10 @@ class _DemoRoute extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          Text('2'),
+          Text(
+            text ?? 'Default Text',
+            style: TextStyle(fontSize: 15, color: Colors.grey),
+          ),
           RaisedButton(
             child: Text('close'),
             onPressed: () {
@@ -113,6 +171,10 @@ class _DemoRoute extends StatelessWidget {
       },
     );
 
+    content = Scaffold(
+      body: content,
+      backgroundColor: Colors.transparent,
+    );
     return content;
   }
 }
