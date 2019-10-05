@@ -43,7 +43,7 @@ class _DemoRoute extends StatelessWidget {
         pageBuilder: (BuildContext context, _, __) {
           return _DemoRoute();
         },
-        barrierColor: Colors.black26,
+        // barrierColor: Colors.black26,
         transitionsBuilder:
             (___, Animation<double> animation, ____, Widget child) {
           return FadeTransition(
@@ -58,7 +58,7 @@ class _DemoRoute extends StatelessWidget {
     );
   }
 
-    static void fadePush(BuildContext context) {
+  static void fadePush(BuildContext context) {
     Navigator.push(
       context,
       PageRouteBuilder(
@@ -69,9 +69,7 @@ class _DemoRoute extends StatelessWidget {
         // barrierColor: Colors.black26,
         transitionsBuilder:
             (___, Animation<double> animation, ____, Widget child) {
-          return FadeTransition(
-            opacity: animation,
-            child: child);
+          return FadeTransition(opacity: animation, child: child);
         },
       ),
     );

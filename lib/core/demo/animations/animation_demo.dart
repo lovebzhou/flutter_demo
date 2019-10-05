@@ -1,13 +1,58 @@
+import 'dart:math' as math;
 import 'package:flutter/material.dart';
 
-class HBAnimationPage extends StatefulWidget {
+class HBAnimationPage extends StatelessWidget {
   static const String title = '动画';
-
   @override
-  State<StatefulWidget> createState() => _HBAnimationPageState();
+  Widget build(BuildContext context) {
+    Widget body = ListView(
+      children: <Widget>[
+        ListTile(
+          title: Text('Transform'),
+          onTap: () {
+            _push(context, (context) => _SizeAnimationDemo());
+          },
+        ),
+         ListTile(
+          title: Text('Spin'),
+          onTap: () {
+            _push(context, (context) => _Spinner());
+          },
+        ),
+      ],
+    );
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(HBAnimationPage.title),
+      ),
+      body: body,
+    );
+  }
+
+  void _push(BuildContext context, WidgetBuilder builder) {
+    Navigator.push(
+      context,
+      PageRouteBuilder(
+        opaque: false,
+        pageBuilder: (BuildContext context, _, __) {
+          return builder(context);
+        },
+        // barrierColor: Colors.black26,
+        transitionsBuilder:
+            (___, Animation<double> animation, ____, Widget child) {
+          return FadeTransition(opacity: animation, child: child);
+        },
+      ),
+    );
+  }
 }
 
-class _HBAnimationPageState extends State<HBAnimationPage>
+class _SizeAnimationDemo extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() => _SizeAnimationDemoState();
+}
+
+class _SizeAnimationDemoState extends State<_SizeAnimationDemo>
     with SingleTickerProviderStateMixin {
   Animation<double> animation;
   AnimationController controller;
@@ -91,5 +136,45 @@ class _HBAnimationPageState extends State<HBAnimationPage>
     controller.dispose();
 
     super.dispose();
+  }
+}
+
+class _Spinner extends StatefulWidget {
+  @override
+  _SpinnerState createState() => _SpinnerState();
+}
+
+class _SpinnerState extends State<_Spinner> with SingleTickerProviderStateMixin {
+  AnimationController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      duration: const Duration(seconds: 4),
+      vsync: this,
+    )..repeat();
+  }
+
+  ///
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  ///
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedBuilder(
+      animation: _controller,
+      child: Container(width: 200.0, height: 200.0, color: Colors.green),
+      builder: (BuildContext context, Widget child) {
+        return Transform.rotate(
+          angle: _controller.value * 2.0 * math.pi,
+          child: child,
+        );
+      },
+    );
   }
 }

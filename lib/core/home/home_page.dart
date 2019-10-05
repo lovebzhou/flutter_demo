@@ -41,15 +41,15 @@ class _HBHomePageState extends State<HBHomePage> {
                       }
                     ];
                     Size screenSize = MediaQuery.of(context).size;
-                    Size menuSize = Size(100, 170);
-                    double left = screenSize.width - menuSize.width - 20;
+                    Size menuSize = Size(screenSize.width, 170);
+                    double left = (screenSize.width - menuSize.width) / 2;
                     double top = 100;
                     PopupMenu().showMenu(
                       context: context,
                       menus: menuItems,
                       edge: EdgeInsets.only(
                           left: left,
-                          right: 20,
+                          right: 0,
                           top: top,
                           bottom: screenSize.height - top - menuSize.height),
                       size: menuSize,
