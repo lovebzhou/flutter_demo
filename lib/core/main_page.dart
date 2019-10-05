@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'home/home_page.dart';
 import 'roster/roster_page.dart';
-import 'demo/demo_page.dart';
+import 'package:flutter_demo/demo/demo_page.dart';
 import 'discovery/discovery_page.dart';
 import 'mine/mine_page.dart';
 
