@@ -256,9 +256,12 @@ class DialogDemo extends StatelessWidget {
       barrierDismissible: true,
       barrierLabel: 'Dismiss',
       barrierColor: Colors.black45,
-      transitionDuration: Duration(microseconds: 300),
+      transitionDuration: Duration(microseconds: 1000),
       context: context,
       pageBuilder: (_, __, ___) => route,
+      transitionBuilder: (ctx, animation, _, child) {
+        return child;
+      },
     );
   }
 
