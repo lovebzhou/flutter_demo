@@ -49,7 +49,6 @@ class _DemoTabState extends State<DemoTab> with SingleTickerProviderStateMixin {
     tabDatas.forEach((data) {
       Tab tab = Tab(
         child: Container(
-          width: 80.0,
           child: Text(data['name']),
         ),
       );
@@ -63,6 +62,7 @@ class _DemoTabState extends State<DemoTab> with SingleTickerProviderStateMixin {
 
     Widget tabBar = TabBar(
       controller: _tabController,
+      isScrollable: true,
       tabs: tabs,
     );
 

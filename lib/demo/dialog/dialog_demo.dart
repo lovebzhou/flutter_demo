@@ -301,7 +301,7 @@ class DialogDemo extends StatelessWidget {
     route = Container(
       color: Colors.white,
       child: route,
-      height: 300,
+      height: 400,
     );
 
     route = SafeArea(child: route);

@@ -113,8 +113,8 @@ class _TopSheetState extends State<TopSheet> {
     assert(widget.enableDrag);
     if (_dismissUnderway)
       return;
-    if (details.velocity.pixelsPerSecond.dy > _minFlingVelocity) {
-      final double flingVelocity = -details.velocity.pixelsPerSecond.dy / _childHeight;
+    if (details.velocity.pixelsPerSecond.dy.abs() > _minFlingVelocity) {
+      final double flingVelocity = details.velocity.pixelsPerSecond.dy / _childHeight;
       if (widget.animationController.value > 0.0) {
         widget.animationController.fling(velocity: flingVelocity);
       }
