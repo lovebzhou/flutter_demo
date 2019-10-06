@@ -1,11 +1,20 @@
+import 'dart:io';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class NavigatorUtil {
   static void pushPage(BuildContext context, Widget page, {String pageName}) {
     if (context == null || page == null) return;
-    Navigator.push(
-        context, new CupertinoPageRoute<void>(builder: (ctx) => page));
+
+    PageRoute route;
+    if (Platform.isAndroid) {
+      route = MaterialPageRoute(builder: (c) => page);
+    } else {
+      route = CupertinoPageRoute(builder: (c) => page);
+    }
+
+    Navigator.push(context, route);
   }
 
   static Future<Null> launchInBrowser(String url, {String title}) async {

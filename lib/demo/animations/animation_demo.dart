@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
+import 'package:flutter_demo/global.dart';
 
 class HBAnimationPage extends StatelessWidget {
   static const String title = '动画';
@@ -13,10 +14,11 @@ class HBAnimationPage extends StatelessWidget {
             _push(context, (context) => _SizeAnimationDemo());
           },
         ),
-         ListTile(
-          title: Text('Spin'),
+        ListTile(
+          title: Text('Transform.rotate'),
           onTap: () {
-            _push(context, (context) => _Spinner());
+            NavigatorUtil.pushPage(context, _Spinner());
+            // _push(context, (context) => _Spinner());
           },
         ),
       ],
@@ -144,7 +146,8 @@ class _Spinner extends StatefulWidget {
   _SpinnerState createState() => _SpinnerState();
 }
 
-class _SpinnerState extends State<_Spinner> with SingleTickerProviderStateMixin {
+class _SpinnerState extends State<_Spinner>
+    with SingleTickerProviderStateMixin {
   AnimationController _controller;
 
   @override
@@ -166,7 +169,7 @@ class _SpinnerState extends State<_Spinner> with SingleTickerProviderStateMixin 
   ///
   @override
   Widget build(BuildContext context) {
-    return AnimatedBuilder(
+    Widget animate = AnimatedBuilder(
       animation: _controller,
       child: Container(width: 200.0, height: 200.0, color: Colors.green),
       builder: (BuildContext context, Widget child) {
@@ -176,5 +179,13 @@ class _SpinnerState extends State<_Spinner> with SingleTickerProviderStateMixin 
         );
       },
     );
+ 
+    Widget body = Center(child: animate,);
+
+    return Scaffold(
+        appBar: AppBar(
+          title: Text('Transform.rotate'),
+        ),
+        body: body);
   }
 }

@@ -9,3 +9,4 @@ export 'widgets/popup_menu.dart';
 export 'widgets/alert_dialog.dart';
 
 export 'utils/log_util.dart';
+export 'utils/navigator_util.dart';
