@@ -261,6 +261,13 @@ class DialogDemo extends StatelessWidget {
       pageBuilder: (_, __, ___) => route,
       transitionBuilder: (ctx, animation, _, child) {
         return child;
+        // return FadeTransition(
+        //   opacity: animation,
+        //   child: RotationTransition(
+        //     turns: Tween<double>(begin: 0.5, end: 1.0).animate(animation),
+        //     child: child,
+        //   ),
+        // );
       },
     );
   }
