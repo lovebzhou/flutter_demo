@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_demo/global.dart';
+import 'package:flutter_demo/widgets/top_sheet.dart';
 
-class BottomSheetDemo extends StatelessWidget {
-  static String title = 'BottomSheet演示';
+class SheetDemo extends StatelessWidget {
+  static String title = 'Top & Bottom Sheet Demo';
   final String roundBorderStyle = 'ClipRRect';
   @override
   Widget build(BuildContext context) {
@@ -29,6 +30,18 @@ class BottomSheetDemo extends StatelessWidget {
             );
           },
         ),
+
+          Builder(
+          builder: (context) {
+            return ListTile(
+              title: Text('showModalTopSheet(Round Top)'),
+              onTap: () {
+                _showModalTopSheet(context);
+              },
+            );
+          },
+        ),
+
         Builder(
           builder: (context) {
             return ListTile(
@@ -44,7 +57,7 @@ class BottomSheetDemo extends StatelessWidget {
 
     route = Scaffold(
       appBar: AppBar(
-        title: Text(BottomSheetDemo.title),
+        title: Text(SheetDemo.title),
       ),
       body: route,
     );
@@ -124,6 +137,43 @@ class BottomSheetDemo extends StatelessWidget {
     showModalBottomSheet(context: context, builder: (context) => route);
   }
 
+   void _showModalTopSheet(BuildContext context) {
+    Widget route = _makeRoute(context);
+
+    BorderRadius borderRadius = BorderRadius.only(
+      bottomLeft: Radius.circular(10.0),
+      bottomRight: Radius.circular(10.0),
+    );
+
+    EdgeInsets padding;
+
+    if (roundBorderStyle == 'ClipRRect') {
+      route = ClipRRect(
+        borderRadius: borderRadius,
+        child: route,
+      );
+    }
+
+    // 圆角
+    route = Container(
+      padding: padding,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.yellow.withOpacity(0.3),
+            offset: Offset(0, 3),
+            blurRadius: 10.0,
+          )
+        ],
+        borderRadius: borderRadius,
+      ),
+      child: route,
+    );
+
+    showModalTopSheet(context: context, builder: (context) => route);
+  }
+
   void _showBottomSheet(BuildContext context) {
     Widget route = _makeRoute(context);
     route = Scaffold(
@@ -155,17 +205,25 @@ class BottomSheetDemo extends StatelessWidget {
     route = Column(
       children: <Widget>[
         Container(
-          // width: double.infinity,
           height: 44.0,
           padding: EdgeInsets.only(left: 15.0),
           color: Colors.blue,
           child: Align(
             alignment: Alignment.centerLeft,
-            child: Text('Title'),
+            child: Text('Header'),
           ),
         ),
         Expanded(
           child: route,
+        ),
+        Container(
+          height: 44.0,
+          padding: EdgeInsets.only(left: 15.0),
+          color: Colors.blue,
+          child: Align(
+            alignment: Alignment.centerLeft,
+            child: Text('Footer'),
+          ),
         ),
       ],
     );

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_demo/demo/bottom_sheet/bottom_sheet_demo.dart';
+import 'package:flutter_demo/demo/sheet/sheet_demo.dart';
 import 'package:flutter_demo/demo/dropdown/demo_dropdown_menu.dart';
 import 'package:flutter_demo/demo/file/file_picker_demo.dart';
 import 'package:flutter_demo/demo/image/demo_crop_image.dart';
@@ -34,7 +34,7 @@ class HBDemoPage extends StatefulWidget {
 
 class _HBDemoPageState extends State<HBDemoPage> {
   final _pages = [
-    Page(BottomSheetDemo(), BottomSheetDemo.title),
+    Page(SheetDemo(), SheetDemo.title),
     Page(AlertDialogDemo(), AlertDialogDemo.title),
     Page(NavigatorDemo(), NavigatorDemo.title),
     Page(DropdownMenuDemo(), DropdownMenuDemo.title),
