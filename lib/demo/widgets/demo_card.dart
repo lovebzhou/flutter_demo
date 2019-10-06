@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 
-class DemoCardPage extends StatefulWidget {
+class DemoCard extends StatefulWidget {
   static const String title = 'Card演示';
   @override
-  _DemoCardPageState createState() => _DemoCardPageState();
+  _DemoCardState createState() => _DemoCardState();
 }
 
-class _DemoCardPageState extends State<DemoCardPage> {
+class _DemoCardState extends State<DemoCard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.blue,
       appBar: AppBar(
-        title: Text(DemoCardPage.title),
+        title: Text(DemoCard.title),
       ),
       body: ListView.builder(
         itemBuilder: (context, index) {
