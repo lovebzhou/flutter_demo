@@ -97,7 +97,7 @@ class DialogDemo extends StatelessWidget {
     JPAlertDialog alertDialog =
         JPAlertDialog(title: 'title', content: 'this is a demo content');
     alertDialog.addAction(title: '查看数据', action: 'view');
-    alertDialog.addAction(title: '编辑数据', action: 'edit');
+    // alertDialog.addAction(title: '编辑数据', action: 'edit');
     alertDialog.addAction(
         title: '删除数据',
         action: 'delete',

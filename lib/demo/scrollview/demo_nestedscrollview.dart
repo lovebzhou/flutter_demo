@@ -27,6 +27,7 @@ class _DemoNestedScrollViewState extends State<DemoNestedScrollView>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // appBar: AppBar(title: Text('AppBar Title'),),
       body: NestedScrollView(
         controller: _scrollViewController,
         headerSliverBuilder: (BuildContext context, bool boxIsScrolled) {
@@ -63,8 +64,8 @@ class _DemoNestedScrollViewState extends State<DemoNestedScrollView>
         },
         body: TabBarView(
           children: <Widget>[
-            PageOne(),
-            PageTwo(),
+            PageOne(scrollController: _scrollViewController,),
+            PageTwo(scrollController: _scrollViewController,),
           ],
           controller: _tabController,
         ),
@@ -83,9 +84,15 @@ class _DemoNestedScrollViewState extends State<DemoNestedScrollView>
 }
 
 class PageOne extends StatelessWidget {
+  final ScrollController scrollController;
+
+  const PageOne({Key key, this.scrollController}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
+      key: PageStorageKey<String>('PageOne'),
+      // controller: scrollController,
       itemExtent: 250.0,
       itemBuilder: (context, index) => Container(
         padding: EdgeInsets.all(10.0),
@@ -103,9 +110,15 @@ class PageOne extends StatelessWidget {
 }
 
 class PageTwo extends StatelessWidget {
+  final ScrollController scrollController;
+
+  const PageTwo({Key key, this.scrollController}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
+      key: PageStorageKey<String>('PageTwo'),
+      // controller: scrollController,
       itemExtent: 250.0,
       itemBuilder: (context, index) => Container(
         padding: EdgeInsets.all(10.0),
