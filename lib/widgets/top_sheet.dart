@@ -316,7 +316,6 @@ class _ModalTopSheetRoute<T> extends PopupRoute<T> {
     Widget topSheet = MediaQuery.removePadding(
       context: context,
       // removeTop: true,
-      removeBottom: true,
       child: _ModalTopSheet<T>(
         route: this,
         backgroundColor: backgroundColor,
