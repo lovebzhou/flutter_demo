@@ -158,7 +158,7 @@ class DemoWrap extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Widget body = DefaultTextStyle(
-      style: TextStyle(fontSize: 12.0),
+      style: TextStyle(fontSize: 12.0, color: Colors.black),
       child: ListView(
         children: <Widget>[
           _buildWrap1(context),
