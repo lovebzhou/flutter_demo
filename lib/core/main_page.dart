@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_demo/utils/log_util.dart';
 import 'home/home_page.dart';
 import 'roster/roster_page.dart';
 import 'package:flutter_demo/demo/demo_page.dart';
@@ -43,14 +44,23 @@ class _HBMainPageState extends State<HBMainPage>
     },
   ];
 
+  List _tabBars;
+
   @override
   void initState() {
     super.initState();
 
-    controller = new TabController(
-        vsync: this, initialIndex: 0, length: tabDatas.length);
+    _tabBars = tabDatas
+        .map((data) => Tab(text: data['text'], icon: data['normal']))
+        .toList();
+
+    controller =
+        TabController(vsync: this, initialIndex: 0, length: tabDatas.length);
+
     controller.addListener(() {
-      if (controller.indexIsChanging && this.mounted) {
+      Log.d('###tab index change###');
+
+      if (!controller.indexIsChanging && this.mounted) {
         print(tabDatas[controller.index]['text']);
       }
     });
@@ -58,7 +68,18 @@ class _HBMainPageState extends State<HBMainPage>
 
   @override
   Widget build(BuildContext context) {
-    final mq = MediaQuery.of(context);
+    Widget bottomBar = TabBar(
+      controller: controller,
+      indicatorWeight: 1,
+      tabs: _tabBars,
+    );
+
+    NotchedShape notchedShape; // = CircularNotchedRectangle();
+    bottomBar = BottomAppBar(
+      color: Theme.of(context).bottomAppBarColor,
+      child: bottomBar,
+      shape: notchedShape,
+    );
 
     return new Scaffold(
       key: mainScaffoldKey,
@@ -72,28 +93,14 @@ class _HBMainPageState extends State<HBMainPage>
           HBMinePage(),
         ],
       ),
-      bottomNavigationBar: Material(
-        color: const Color(0xFFF0EEEF),
-        child: SafeArea(
-          child: Container(
-            decoration: BoxDecoration(
-              color: const Color(0xFFF0EEEF),
-              border: Border(
-                top: BorderSide(
-                    color: Theme.of(context).dividerColor, width: 1.0 / mq.devicePixelRatio),
-              ),
-            ),
-            child: TabBar(
-              controller: controller,
-              indicatorWeight: 1,
-              tabs: tabDatas
-                  .map((data) =>
-                      new Tab(text: data['text'], icon: data['normal']))
-                  .toList(),
-            ),
-          ),
-        ),
+      bottomNavigationBar: bottomBar,
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: () {
+          Log.d('floating action button');
+        },
       ),
+      // floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
     );
   }
 }

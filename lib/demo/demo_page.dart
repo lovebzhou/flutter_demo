@@ -10,6 +10,7 @@ import 'package:flutter_demo/demo/image/photo_picker_demo.dart';
 import 'package:flutter_demo/demo/log/demo_alice.dart';
 import 'package:flutter_demo/demo/navigator/navigator_demo.dart';
 import 'package:flutter_demo/demo/scrollview/demo_nestedscrollview.dart';
+import 'package:flutter_demo/demo/scrollview/scrollview_demo.dart';
 import 'package:flutter_demo/demo/widgets/demo_widgets.dart';
 import 'animations/animation_demo.dart';
 import 'layout/layout_demo.dart';
@@ -32,6 +33,7 @@ class HBDemoPage extends StatefulWidget {
 
 class _HBDemoPageState extends State<HBDemoPage> {
   final _pages = [
+    Page(ScrollViewDemo(), ScrollViewDemo.title),
     Page(DialogDemo(), DialogDemo.title),
     Page(DemoWidgets(), DemoWidgets.title),
     Page(NavigatorDemo(), NavigatorDemo.title),

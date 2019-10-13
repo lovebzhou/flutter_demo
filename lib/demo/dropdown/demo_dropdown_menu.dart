@@ -6,7 +6,7 @@ class DropdownMenuDemo extends StatefulWidget {
   static const String title = 'Dropdown Menu演示';
 
   @override
-  _DropdownMenuDemoState createState() => new _DropdownMenuDemoState();
+  _DropdownMenuDemoState createState() => _DropdownMenuDemoState();
 }
 
 const List<Map<String, dynamic>> ORDERS = [
@@ -85,36 +85,36 @@ class _DropdownMenuDemoState extends State<DropdownMenuDemo> {
   ScrollController scrollController;
   @override
   void initState() {
-    scrollController = new ScrollController();
-    globalKey = new GlobalKey();
+    scrollController = ScrollController();
+    globalKey = GlobalKey();
     super.initState();
   }
 
   DropdownMenu buildDropdownMenu() {
-    return new DropdownMenu(maxMenuHeight: kDropdownMenuItemHeight * 10,
+    return DropdownMenu(maxMenuHeight: kDropdownMenuItemHeight * 10,
         //  activeIndex: activeIndex,
         menus: [
-          new DropdownMenuBuilder(
+          DropdownMenuBuilder(
               builder: (BuildContext context) {
-                return new DropdownListMenu(
+                return DropdownListMenu(
                   selectedIndex: TYPE_INDEX,
                   data: TYPES,
                   itemBuilder: buildCheckItem,
                 );
               },
               height: kDropdownMenuItemHeight * TYPES.length),
-          new DropdownMenuBuilder(
+          DropdownMenuBuilder(
               builder: (BuildContext context) {
-                return new DropdownListMenu(
+                return DropdownListMenu(
                   selectedIndex: ORDER_INDEX,
                   data: ORDERS,
                   itemBuilder: buildCheckItem,
                 );
               },
               height: kDropdownMenuItemHeight * ORDERS.length),
-          new DropdownMenuBuilder(
+          DropdownMenuBuilder(
               builder: (BuildContext context) {
-                return new DropdownTreeMenu(
+                return DropdownTreeMenu(
                   selectedIndex: 0,
                   subSelectedIndex: 0,
                   itemExtent: 45.0,
@@ -123,34 +123,34 @@ class _DropdownMenuDemoState extends State<DropdownMenuDemo> {
                   itemBuilder:
                       (BuildContext context, dynamic data, bool selected) {
                     if (!selected) {
-                      return new DecoratedBox(
-                          decoration: new BoxDecoration(
-                              border: new Border(
+                      return DecoratedBox(
+                          decoration: BoxDecoration(
+                              border: Border(
                                   right: Divider.createBorderSide(context))),
-                          child: new Padding(
+                          child: Padding(
                               padding: const EdgeInsets.only(left: 15.0),
-                              child: new Row(
+                              child: Row(
                                 children: <Widget>[
-                                  new Text(data['title']),
+                                  Text(data['title']),
                                 ],
                               )));
                     } else {
-                      return new DecoratedBox(
-                          decoration: new BoxDecoration(
-                              border: new Border(
+                      return DecoratedBox(
+                          decoration: BoxDecoration(
+                              border: Border(
                                   top: Divider.createBorderSide(context),
                                   bottom: Divider.createBorderSide(context))),
-                          child: new Container(
+                          child: Container(
                               color: Theme.of(context).scaffoldBackgroundColor,
-                              child: new Row(
+                              child: Row(
                                 children: <Widget>[
-                                  new Container(
+                                  Container(
                                       color: Theme.of(context).primaryColor,
                                       width: 3.0,
                                       height: 20.0),
-                                  new Padding(
-                                      padding: new EdgeInsets.only(left: 12.0),
-                                      child: new Text(data['title'])),
+                                  Padding(
+                                      padding: EdgeInsets.only(left: 12.0),
+                                      child: Text(data['title'])),
                                 ],
                               )));
                     }
@@ -161,18 +161,18 @@ class _DropdownMenuDemoState extends State<DropdownMenuDemo> {
                         ? Theme.of(context).primaryColor
                         : Theme.of(context).textTheme.body1.color;
 
-                    return new SizedBox(
+                    return SizedBox(
                       height: 45.0,
-                      child: new Row(
+                      child: Row(
                         children: <Widget>[
-                          new Text(
+                          Text(
                             data['title'],
-                            style: new TextStyle(color: color),
+                            style: TextStyle(color: color),
                           ),
-                          new Expanded(
-                              child: new Align(
+                          Expanded(
+                              child: Align(
                                   alignment: Alignment.centerRight,
-                                  child: new Text(data['count'].toString())))
+                                  child: Text(data['count'].toString())))
                         ],
                       ),
                     );
@@ -188,21 +188,21 @@ class _DropdownMenuDemoState extends State<DropdownMenuDemo> {
   }
 
   DropdownHeader buildDropdownHeader({DropdownMenuHeadTapCallback onTap}) {
-    return new DropdownHeader(
+    return DropdownHeader(
       onTap: onTap,
       titles: [TYPES[TYPE_INDEX], ORDERS[ORDER_INDEX], foods[0]['children'][0]],
     );
   }
 
   Widget buildFixHeaderDropdownMenu() {
-    return new DefaultDropdownMenuController(
-        child: new Column(
+    return DefaultDropdownMenuController(
+        child: Column(
       children: <Widget>[
         buildDropdownHeader(),
-        new Expanded(
-            child: new Stack(
+        Expanded(
+            child: Stack(
           children: <Widget>[
-            new ListView(
+            ListView(
               children: <Widget>[new Text("123123")],
             ),
             buildDropdownMenu()
@@ -213,53 +213,50 @@ class _DropdownMenuDemoState extends State<DropdownMenuDemo> {
   }
 
   Widget buildInnerListHeaderDropdownMenu() {
-    return new DefaultDropdownMenuController(
+    return DefaultDropdownMenuController(
         onSelected: ({int menuIndex, int index, int subIndex, dynamic data}) {
           print(
               "menuIndex:$menuIndex index:$index subIndex:$subIndex data:$data");
         },
-        child: new Stack(
+        child: Stack(
           children: <Widget>[
-            new CustomScrollView(
-                controller: scrollController,
-                slivers: <Widget>[
-                  new SliverList(
-                      key: globalKey,
-                      delegate: new SliverChildBuilderDelegate(
-                          (BuildContext context, int index) {
-                        return new Container(
-                          color: Colors.black26,
-                          child: new Image.asset(
-                            "images/header.jpg",
-                            fit: BoxFit.fill,
-                          ),
-                        );
-                      }, childCount: 1)),
-                  new SliverPersistentHeader(
-                    delegate: new DropdownSliverChildBuilderDelegate(
-                        builder: (BuildContext context) {
-                      return new Container(
-                          color: Theme.of(context).scaffoldBackgroundColor,
-                          child: buildDropdownHeader(onTap: this._onTapHead));
-                    }),
-                    pinned: true,
-                    floating: true,
-                  ),
-                  new SliverList(
-                      delegate: new SliverChildBuilderDelegate(
-                          (BuildContext context, int index) {
-                    return new Container(
-                      color: Theme.of(context).scaffoldBackgroundColor,
-                      child: new Image.asset(
-                        "images/body.jpg",
+            CustomScrollView(controller: scrollController, slivers: <Widget>[
+              SliverList(
+                  key: globalKey,
+                  delegate: SliverChildBuilderDelegate(
+                      (BuildContext context, int index) {
+                    return Container(
+                      color: Colors.black26,
+                      child: Image.asset(
+                        "images/header.jpg",
                         fit: BoxFit.fill,
                       ),
                     );
-                  }, childCount: 10)),
-                ]),
-            new Padding(
-                padding: new EdgeInsets.only(top: 46.0),
-                child: buildDropdownMenu())
+                  }, childCount: 1)),
+              SliverPersistentHeader(
+                delegate: DropdownSliverChildBuilderDelegate(
+                    builder: (BuildContext context) {
+                  return Container(
+                      color: Theme.of(context).scaffoldBackgroundColor,
+                      child: buildDropdownHeader(onTap: this._onTapHead));
+                }),
+                pinned: true,
+                floating: true,
+              ),
+              SliverList(
+                  delegate: SliverChildBuilderDelegate(
+                      (BuildContext context, int index) {
+                return Container(
+                  color: Theme.of(context).scaffoldBackgroundColor,
+                  child: Image.asset(
+                    "images/body.jpg",
+                    fit: BoxFit.fill,
+                  ),
+                );
+              }, childCount: 10)),
+            ]),
+            Padding(
+                padding: EdgeInsets.only(top: 46.0), child: buildDropdownMenu())
           ],
         ));
   }
@@ -277,7 +274,7 @@ class _DropdownMenuDemoState extends State<DropdownMenuDemo> {
     //
     scrollController
         .animateTo(scrollController.offset + renderObject.semanticBounds.height,
-            duration: new Duration(milliseconds: 150), curve: Curves.ease)
+            duration: Duration(milliseconds: 150), curve: Curves.ease)
         .whenComplete(() {
       controller.show(index);
     });
@@ -287,14 +284,14 @@ class _DropdownMenuDemoState extends State<DropdownMenuDemo> {
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      appBar: new AppBar(
-        title: new Text(DropdownMenuDemo.title),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(DropdownMenuDemo.title),
       ),
       body: _currentIndex == 0
           ? buildFixHeaderDropdownMenu()
           : buildInnerListHeaderDropdownMenu(),
-      bottomNavigationBar: new BottomNavigationBar(
+      bottomNavigationBar: BottomNavigationBar(
           onTap: (int index) {
             setState(() {
               _currentIndex = index;
@@ -305,8 +302,8 @@ class _DropdownMenuDemoState extends State<DropdownMenuDemo> {
             {"name": "Fix", "icon": Icons.hearing},
             {"name": "ScrollView", "icon": Icons.list}
           ]
-              .map((dynamic data) => new BottomNavigationBarItem(
-                  title: new Text(data["name"]), icon: new Icon(data["icon"])))
+              .map((dynamic data) => BottomNavigationBarItem(
+                  title: Text(data["name"]), icon: Icon(data["icon"])))
               .toList()),
     );
   }

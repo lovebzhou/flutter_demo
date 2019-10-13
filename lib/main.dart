@@ -37,8 +37,27 @@ class _AppPageState extends State<AppPage> with WidgetsBindingObserver {
 
   @override
   Widget build(BuildContext context) {
+    Brightness brightness = Brightness.light;
+    final bool isDark = brightness == Brightness.dark;
+    ThemeData mainTheme = ThemeData(
+      brightness: brightness,
+      // primarySwatch: Colors.grey,
+      // primaryColor: Colors.black,
+      
+      // accentColor: Colors.greenAccent,
+
+      // buttonColor: Colors.blue,
+
+      // primaryColorBrightness: Brightness.dark,
+      // accentColorBrightness: Brightness.dark,
+      /// 删除水波纹
+      splashColor: Colors.transparent,
+      /// 删除点击高亮
+      highlightColor: Colors.transparent,
+      bottomAppBarColor: isDark ? Colors.grey[800] : Colors.grey[300],
+    );
     return MaterialApp(
-      theme: HBTheme.mainThemeData,
+      theme: mainTheme,
       home: home,
     );
   }

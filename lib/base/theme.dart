@@ -4,7 +4,7 @@ import 'colors.dart';
 const int ThemeColor = 0xFFC91B3A;
 
 class HBTheme extends Theme {
-  static final mainThemeData = ThemeData(
+  static final mainTheme = ThemeData(
     primaryColorBrightness: Brightness.light,
     // primarySwatch: Colors.lightBlue,
     primaryColor: HBColors.primaryColor,
