@@ -37,7 +37,7 @@ class _AppPageState extends State<AppPage> with WidgetsBindingObserver {
 
   @override
   Widget build(BuildContext context) {
-    Brightness brightness = Brightness.light;
+    Brightness brightness = Brightness.dark;
     final bool isDark = brightness == Brightness.dark;
     ThemeData mainTheme = ThemeData(
       brightness: brightness,

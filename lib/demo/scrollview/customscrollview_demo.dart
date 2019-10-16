@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -27,6 +29,19 @@ class _CustomScrollViewDemoState extends State<CustomScrollViewDemo>
 
   @override
   Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: _buildAppBar(context),
+      body: _buildBody(context),
+    );
+  }
+
+  Widget _buildAppBar(BuildContext context) {
+    return AppBar(
+      title: Text('AppBar Title'),
+    );
+  }
+
+  Widget _buildBody(BuildContext context) {
     TabBar tabBar = TabBar(
       controller: _tabController,
       tabs: <Widget>[
@@ -41,35 +56,51 @@ class _CustomScrollViewDemoState extends State<CustomScrollViewDemo>
 
     Widget body = CustomScrollView(
       controller: _scrollController,
+      physics: Platform.isIOS
+          ? AlwaysScrollableScrollPhysics()
+          : BouncingScrollPhysics(),
       slivers: <Widget>[
+        _buildRefreshControl(context),
         SliverAppBar(
           pinned: true,
+          floating: true,
+          // snap: true,
+          // title: Text('Title'),
           expandedHeight: 250.0,
           flexibleSpace: FlexibleSpaceBar(
             title: Text('Demo'),
+            background: SizedBox.expand(
+              child: Container(
+                color: Colors.yellow,
+                child: Center(
+                  child: Text('backgroud'),
+                ),
+              ),
+            ),
           ),
           bottom: tabBar,
         ),
-        SliverToBoxAdapter(child: 
-        Container(
+        SliverToBoxAdapter(
+          child: Container(
             height: 200,
             child: TabBarView(
-            controller: _tabController,
-            children: <Widget>[
-              ListView.builder(
-                itemCount: 10,
-                itemBuilder: (c, i) {
-                  return Text('Item $i');
-                },
-              ),
-              ListView.builder(
-                itemCount: 10,
-                itemBuilder: (c, i) {
-                  return Text('Item $i');
-                },
-              )
-            ],
-          ),),
+              controller: _tabController,
+              children: <Widget>[
+                ListView.builder(
+                  itemCount: 10,
+                  itemBuilder: (c, i) {
+                    return Text('Item $i');
+                  },
+                ),
+                ListView.builder(
+                  itemCount: 10,
+                  itemBuilder: (c, i) {
+                    return Text('Item $i');
+                  },
+                )
+              ],
+            ),
+          ),
         ),
         SliverGrid(
           gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
@@ -107,11 +138,28 @@ class _CustomScrollViewDemoState extends State<CustomScrollViewDemo>
     );
 
     body = Scrollbar(
-        // controller: _scrollController,
-        child: body);
+      child: body,
+    );
 
     body = SafeArea(child: body);
 
-    return Scaffold(body: body);
+    return body;
+  }
+
+  Widget _buildRefreshControl(BuildContext context) {
+    return CupertinoSliverRefreshControl(
+      builder: (
+        BuildContext context,
+        RefreshIndicatorMode refreshState,
+        double pulledExtent,
+        double refreshTriggerPullDistance,
+        double refreshIndicatorExtent,
+      ) {
+        return Center(
+          child: Text('下拉刷新'),
+        );
+      },
+      onRefresh: () {},
+    );
   }
 }
