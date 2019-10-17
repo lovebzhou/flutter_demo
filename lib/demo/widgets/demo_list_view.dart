@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
-/// 演示各种ListView
+/// 演示ListView及各种Row的MainAxisAlignment
 class DemoListView extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => _DemoListViewState();
