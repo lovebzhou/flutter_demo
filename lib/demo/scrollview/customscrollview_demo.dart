@@ -35,6 +35,7 @@ class _CustomScrollViewDemoState extends State<CustomScrollViewDemo>
     );
   }
 
+
   Widget _buildAppBar(BuildContext context) {
     return AppBar(
       title: Text('AppBar Title'),
@@ -55,6 +56,7 @@ class _CustomScrollViewDemoState extends State<CustomScrollViewDemo>
     );
 
     Widget body = CustomScrollView(
+      semanticChildCount: 5,
       controller: _scrollController,
       physics: Platform.isIOS
           ? AlwaysScrollableScrollPhysics()
@@ -63,9 +65,9 @@ class _CustomScrollViewDemoState extends State<CustomScrollViewDemo>
         _buildRefreshControl(context),
         SliverAppBar(
           pinned: true,
-          floating: true,
+          // floating: true,
           // snap: true,
-          // title: Text('Title'),
+          title: Text('SliverAppBar Title'),
           expandedHeight: 250.0,
           flexibleSpace: FlexibleSpaceBar(
             title: Text('Demo'),
@@ -87,17 +89,35 @@ class _CustomScrollViewDemoState extends State<CustomScrollViewDemo>
               controller: _tabController,
               children: <Widget>[
                 ListView.builder(
-                  itemCount: 10,
-                  itemBuilder: (c, i) {
-                    return Text('Item $i');
+                  // controller: _scrollController,
+                  itemExtent: 50.0,
+                  itemBuilder: (BuildContext context, int index) {
+                    return Container(
+                      alignment: Alignment.center,
+                      color: Colors.red[100 * (index % 9 + 1)],
+                      child: Text('List Item $index'),
+                    );
                   },
+                  itemCount: 60,
                 ),
-                ListView.builder(
-                  itemCount: 10,
-                  itemBuilder: (c, i) {
-                    return Text('Item $i');
+                GridView.builder(
+                  // controller: _scrollController,
+                  gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                    maxCrossAxisExtent: 200.0,
+                    mainAxisSpacing: 10.0,
+                    crossAxisSpacing: 10.0,
+                    childAspectRatio: 4.0,
+                  ),
+                  itemBuilder: (BuildContext context, int index) {
+                    return Container(
+                      height: 100,
+                      alignment: Alignment.center,
+                      color: Colors.brown[100 * (index % 9 + 1)],
+                      child: Text('Grid Item $index'),
+                    );
                   },
-                )
+                  itemCount: 20,
+                ),
               ],
             ),
           ),
@@ -159,7 +179,7 @@ class _CustomScrollViewDemoState extends State<CustomScrollViewDemo>
           child: Text('下拉刷新'),
         );
       },
-      onRefresh: () {},
+      onRefresh: () async {},
     );
   }
 }

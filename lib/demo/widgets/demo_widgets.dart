@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_demo/demo/widgets/demo_card.dart';
+import 'package:flutter_demo/demo/widgets/demo_grid.dart';
 import 'package:flutter_demo/demo/widgets/demo_tab.dart';
 import 'package:flutter_demo/demo/widgets/demo_wrap.dart';
 import 'package:flutter_demo/utils/navigator_util.dart';
+
+import 'demo_list_view.dart';
+import 'demo_my_grid.dart';
 
 class DemoWidgets extends StatelessWidget {
   static String title = '标准Widget演示';
@@ -14,6 +18,9 @@ class DemoWidgets extends StatelessWidget {
         _buildItem(context, DemoCard.title, DemoCard()),
         _buildItem(context, DemoWrap.title, DemoWrap()),
         _buildItem(context, DemoTab.title, DemoTab()),
+        _buildItem(context, 'Demo ListView', DemoListView()),
+        _buildItem(context, 'Demo Grid', DemoGridPage()),
+        _buildItem(context, 'Demo My Grid', DemoMyGrid()),
       ],
     );
 
