@@ -128,7 +128,7 @@ class _CustomScrollViewDemoState extends State<CustomScrollViewDemo>
           child: Text('Tab1'),
         ),
         Tab(
-          child: Text('Tab2'),
+          child: Row(children:[Text('Tab2'), Icon(Icons.expand_more)]),
         ),
       ],
     );
@@ -136,7 +136,7 @@ class _CustomScrollViewDemoState extends State<CustomScrollViewDemo>
     /// 设置bottomBar高度
     bottomBar = Container(
       height: 56.0, // NavigationBar Height 56.0
-      width: 160.0,
+      width: 200.0,
       child: bottomBar,
       // color: Colors.black12,
     );

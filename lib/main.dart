@@ -42,9 +42,9 @@ class _AppPageState extends State<AppPage> with WidgetsBindingObserver {
     ThemeData mainTheme = ThemeData(
       brightness: brightness,
       // primarySwatch: Colors.grey,
-      // primaryColor: Colors.black,
+      primaryColor: Colors.black,
       
-      // accentColor: Colors.greenAccent,
+      accentColor: Colors.white,
 
       // buttonColor: Colors.blue,
 

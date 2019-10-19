@@ -14,6 +14,7 @@ class _DemoListViewState extends State<DemoListView> {
 
   final bool isSingle = false;
 
+  /// 已选
   List<bool> _selections;
 
   @override
