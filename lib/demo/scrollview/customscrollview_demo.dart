@@ -11,18 +11,24 @@ class CustomScrollViewDemo extends StatefulWidget {
 class _CustomScrollViewDemoState extends State<CustomScrollViewDemo>
     with SingleTickerProviderStateMixin {
   ScrollController _scrollController;
+  ScrollController _scrollController2;
+
   TabController _tabController;
 
   @override
   void initState() {
     super.initState();
     _scrollController = ScrollController();
+    _scrollController2 = ScrollController();
+
     _tabController = TabController(length: 2, vsync: this);
   }
 
   @override
   void dispose() {
     _scrollController.dispose();
+    _scrollController2.dispose();
+
     _tabController.dispose();
     super.dispose();
   }
@@ -35,7 +41,6 @@ class _CustomScrollViewDemoState extends State<CustomScrollViewDemo>
     );
   }
 
-
   Widget _buildAppBar(BuildContext context) {
     return AppBar(
       title: Text('AppBar Title'),
@@ -43,18 +48,6 @@ class _CustomScrollViewDemoState extends State<CustomScrollViewDemo>
   }
 
   Widget _buildBody(BuildContext context) {
-    TabBar tabBar = TabBar(
-      controller: _tabController,
-      tabs: <Widget>[
-        Tab(
-          child: Text('Tab1'),
-        ),
-        Tab(
-          child: Text('Tab2'),
-        ),
-      ],
-    );
-
     Widget body = CustomScrollView(
       semanticChildCount: 5,
       controller: _scrollController,
@@ -63,101 +56,16 @@ class _CustomScrollViewDemoState extends State<CustomScrollViewDemo>
           : BouncingScrollPhysics(),
       slivers: <Widget>[
         _buildRefreshControl(context),
-        SliverAppBar(
-          pinned: true,
-          // floating: true,
-          // snap: true,
-          title: Text('SliverAppBar Title'),
-          expandedHeight: 250.0,
-          flexibleSpace: FlexibleSpaceBar(
-            title: Text('Demo'),
-            background: SizedBox.expand(
-              child: Container(
-                color: Colors.yellow,
-                child: Center(
-                  child: Text('backgroud'),
-                ),
-              ),
-            ),
-          ),
-          bottom: tabBar,
-        ),
-        SliverToBoxAdapter(
-          child: Container(
-            height: 200,
-            child: TabBarView(
-              controller: _tabController,
-              children: <Widget>[
-                ListView.builder(
-                  // controller: _scrollController,
-                  itemExtent: 50.0,
-                  itemBuilder: (BuildContext context, int index) {
-                    return Container(
-                      alignment: Alignment.center,
-                      color: Colors.red[100 * (index % 9 + 1)],
-                      child: Text('List Item $index'),
-                    );
-                  },
-                  itemCount: 60,
-                ),
-                GridView.builder(
-                  // controller: _scrollController,
-                  gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                    maxCrossAxisExtent: 200.0,
-                    mainAxisSpacing: 10.0,
-                    crossAxisSpacing: 10.0,
-                    childAspectRatio: 4.0,
-                  ),
-                  itemBuilder: (BuildContext context, int index) {
-                    return Container(
-                      height: 100,
-                      alignment: Alignment.center,
-                      color: Colors.brown[100 * (index % 9 + 1)],
-                      child: Text('Grid Item $index'),
-                    );
-                  },
-                  itemCount: 20,
-                ),
-              ],
-            ),
-          ),
-        ),
-        SliverGrid(
-          gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-            maxCrossAxisExtent: 200.0,
-            mainAxisSpacing: 10.0,
-            crossAxisSpacing: 10.0,
-            childAspectRatio: 4.0,
-          ),
-          delegate: SliverChildBuilderDelegate(
-            (BuildContext context, int index) {
-              return Container(
-                height: 100,
-                alignment: Alignment.center,
-                color: Colors.teal[100 * (index % 9 + 1)],
-                child: Text('Grid Item $index'),
-              );
-            },
-            childCount: 20,
-          ),
-        ),
-        SliverFixedExtentList(
-          itemExtent: 50.0,
-          delegate: SliverChildBuilderDelegate(
-            (BuildContext context, int index) {
-              return Container(
-                alignment: Alignment.center,
-                color: Colors.lightBlue[100 * (index % 9 + 1)],
-                child: Text('List Item $index'),
-              );
-            },
-            childCount: 60,
-          ),
-        ),
+        _buildSliverAppBar(context),
+        _buildSliverTabBarView(context),
+        _buildSliverGrid(context),
+        _buildSliverList(context),
       ],
     );
 
-    body = Scrollbar(
+    // TODO: remove horizontal indicator
+    body = CupertinoScrollbar(
+      controller: _scrollController,
       child: body,
     );
 
@@ -180,6 +88,162 @@ class _CustomScrollViewDemoState extends State<CustomScrollViewDemo>
         );
       },
       onRefresh: () async {},
+    );
+  }
+
+  Widget _buildSliverAppBar(BuildContext context) {
+    return SliverAppBar(
+      pinned: true,
+      // floating: true, // APPBar是否跟随下拉立即显示
+      // snap: true,
+      title: Text('SliverAppBar Title'),
+      // centerTitle: true,
+      automaticallyImplyLeading: false,
+      titleSpacing: 16.0,
+      backgroundColor: Colors.orange,
+      expandedHeight: 250.0,
+      flexibleSpace: _buildFlexibleBar(context),
+      bottom: _buildBottomBar(context),
+    );
+  }
+
+  Widget _buildFlexibleBar(BuildContext context) {
+    Widget background = Image.asset(
+      'assets/images/7.jpg',
+      fit: BoxFit.cover,
+    );
+    return FlexibleSpaceBar(
+      // title: Text('Demo'),
+      background: background,
+    );
+  }
+
+  Widget _buildBottomBar(BuildContext context) {
+    Widget bottomBar = TabBar(
+      indicatorColor: Colors.red,
+      indicatorSize: TabBarIndicatorSize.label,
+      controller: _tabController,
+      tabs: <Widget>[
+        Tab(
+          child: Text('Tab1'),
+        ),
+        Tab(
+          child: Text('Tab2'),
+        ),
+      ],
+    );
+
+    /// 设置bottomBar高度
+    bottomBar = Container(
+      height: 56.0, // NavigationBar Height 56.0
+      width: 160.0,
+      child: bottomBar,
+      // color: Colors.black12,
+    );
+    bottomBar = Align(
+      alignment: Alignment.centerLeft,
+      child: bottomBar,
+    );
+    bottomBar = Container(
+      child: bottomBar,
+      color: Colors.black12,
+    );
+
+    /// AppBar高度不计算bottomBar高度
+    bottomBar = PreferredSize(
+      child: bottomBar,
+      preferredSize: Size(160, 0),
+    );
+
+    return bottomBar;
+  }
+
+  Widget _buildSliverTabBarView(BuildContext context) {
+    Widget tabBarView = TabBarView(
+      controller: _tabController,
+      children: <Widget>[
+        ListView.builder(
+          controller: _scrollController2,
+          itemExtent: 50.0,
+          itemBuilder: (BuildContext context, int index) {
+            return Container(
+              alignment: Alignment.center,
+              color: Colors.red[100 * (index % 9 + 1)],
+              child: Text('List Item $index'),
+            );
+          },
+          itemCount: 60,
+        ),
+        GridView.builder(
+          controller: _scrollController2,
+          gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+            maxCrossAxisExtent: 200.0,
+            mainAxisSpacing: 10.0,
+            crossAxisSpacing: 10.0,
+            childAspectRatio: 4.0,
+          ),
+          itemBuilder: (BuildContext context, int index) {
+            return Container(
+              height: 100,
+              alignment: Alignment.center,
+              color: Colors.brown[100 * (index % 9 + 1)],
+              child: Text('Grid Item $index'),
+            );
+          },
+          itemCount: 20,
+        ),
+      ],
+    );
+
+    // tabBarView = CupertinoScrollbar(
+    //   child: tabBarView,
+    // );
+
+    tabBarView = SliverToBoxAdapter(
+      child: Container(
+        height: 200,
+        child: tabBarView,
+      ),
+    );
+
+    return tabBarView;
+  }
+
+  Widget _buildSliverGrid(BuildContext context) {
+    return SliverGrid(
+      gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+        maxCrossAxisExtent: 200.0,
+        mainAxisSpacing: 10.0,
+        crossAxisSpacing: 10.0,
+        childAspectRatio: 4.0,
+      ),
+      delegate: SliverChildBuilderDelegate(
+        (BuildContext context, int index) {
+          return Container(
+            height: 100,
+            alignment: Alignment.center,
+            color: Colors.teal[100 * (index % 9 + 1)],
+            child: Text('Grid Item $index'),
+          );
+        },
+        childCount: 20,
+      ),
+    );
+  }
+
+  Widget _buildSliverList(BuildContext context) {
+    return SliverFixedExtentList(
+      itemExtent: 50.0,
+      delegate: SliverChildBuilderDelegate(
+        (BuildContext context, int index) {
+          return Container(
+            alignment: Alignment.center,
+            color: Colors.lightBlue[100 * (index % 9 + 1)],
+            child: Text('List Item $index'),
+          );
+        },
+        childCount: 60,
+      ),
     );
   }
 }
