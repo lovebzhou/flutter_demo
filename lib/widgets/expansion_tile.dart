@@ -2,6 +2,11 @@ import 'package:flutter/material.dart';
 
 const Duration _kExpand = Duration(milliseconds: 200);
 
+/// 类似ExpansionTile
+/// 
+/// - 内部用Row替代了ListTile
+/// - 增加了标题，图片折叠、展开时的颜色属性
+/// - training不为null时，可旋转
 class ZBExpansionTile extends StatefulWidget {
   const ZBExpansionTile({
     Key key,

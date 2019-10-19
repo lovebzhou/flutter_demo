@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 
+/// 通过Column和Row实现类似GridView样式布局
+/// 
+/// 为添加至[ExpansionTile]，[ZBExpansionTile]中时可自动计算高度而写。
+/// 
 class ZBGridTile extends StatelessWidget {
   final int itemCount;
   final IndexedWidgetBuilder itemBuilder;
