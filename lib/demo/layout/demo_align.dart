@@ -7,6 +7,19 @@ class DemoAlign extends StatelessWidget {
   Widget build(BuildContext context) {
     Widget body = ListView(
       children: <Widget>[
+        Align(
+          child: Container(
+            child: _buildItem(context, _buildContent(context, 'Text')),
+          ),
+        ),
+        ClipRect(
+          child: Align(
+            child: Container(
+              child: _buildItem(context, _buildContent(context, 'Text')),
+            ),
+            heightFactor: 0.5,
+          ),
+        ),
         _buildItem(
           context,
           Column(
@@ -59,6 +72,27 @@ class DemoAlign extends StatelessWidget {
           Align(
             alignment: Alignment.centerRight,
             child: _buildContent(context, 'centerRight'),
+          ),
+        ),
+        _buildItem(
+          context,
+          Align(
+            alignment: Alignment.bottomLeft,
+            child: _buildContent(context, 'bottomLeft'),
+          ),
+        ),
+        _buildItem(
+          context,
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: _buildContent(context, 'bottomCenter'),
+          ),
+        ),
+        _buildItem(
+          context,
+          Align(
+            alignment: Alignment.bottomRight,
+            child: _buildContent(context, 'bottomRight'),
           ),
         ),
       ],
