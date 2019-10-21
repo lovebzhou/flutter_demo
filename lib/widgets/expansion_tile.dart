@@ -97,9 +97,9 @@ class _ZBExpansionTileState extends State<ZBExpansionTile>
       } else {
         _controller.reverse().then<void>((void value) {
           if (!mounted) return;
-          setState(() {
-            // Rebuild without widget.children.
-          });
+          // setState(() {
+          //   // Rebuild without widget.children.
+          // });
         });
       }
       PageStorage.of(context)?.writeState(context, _isExpanded);

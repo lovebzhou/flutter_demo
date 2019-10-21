@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
-/// 布局演示
-class HBLayoutPage extends StatefulWidget {
+/// Row布局演示
+class DemoRow extends StatefulWidget {
   static const String title = '布局演示';
   static const IconData iconData = Icons.cake;
   @override
-  State<StatefulWidget> createState() => _HBLayoutPageState();
+  State<StatefulWidget> createState() => _DemoRowState();
 }
 
-class _HBLayoutPageState extends State<HBLayoutPage> {
+class _DemoRowState extends State<DemoRow> {
   @override
   Widget build(BuildContext context) {
     final row1 = Row(
