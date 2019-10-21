@@ -24,6 +24,9 @@ class _DemoTabState extends State<DemoTab> with SingleTickerProviderStateMixin {
     super.initState();
 
     _tabController = TabController(length: tabDatas.length, vsync: this);
+    _tabController.animation.addListener((){
+      Log.d('animation.value = ${_tabController.animation.value}, index = ${_tabController.index}, prevIndex = ${_tabController.previousIndex}');
+    });
   }
 
   @override
