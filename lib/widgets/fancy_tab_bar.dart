@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_demo/global.dart';
 import 'tab_item.dart';
 import 'package:vector_math/vector_math.dart' as vector;
 
@@ -36,12 +37,14 @@ class _FancyTabBarState extends State<FancyTabBar>
     _positionAnimation = _positionTween.animate(
         CurvedAnimation(parent: _animationController, curve: Curves.easeOut))
       ..addListener(() {
+        Log.d('_positionAnimation.value = ${_positionAnimation.value}');
         setState(() {});
       });
 
     _fadeFabOutAnimation = Tween<double>(begin: 1, end: 0).animate(
         CurvedAnimation(parent: _fadeOutController, curve: Curves.easeOut))
       ..addListener(() {
+        Log.d('_fadeFabOutAnimation.value = ${_fadeFabOutAnimation.value}');
         setState(() {
           fabIconAlpha = _fadeFabOutAnimation.value;
         });
@@ -60,6 +63,7 @@ class _FancyTabBarState extends State<FancyTabBar>
             curve: Interval(0.8, 1, curve: Curves.easeOut)))
       ..addListener(() {
         setState(() {
+          Log.d('_fadeFabInAnimation.value = ${_fadeFabInAnimation.value}');
           fabIconAlpha = _fadeFabInAnimation.value;
         });
       });
