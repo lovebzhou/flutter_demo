@@ -44,7 +44,7 @@ class _AppPageState extends State<AppPage> with WidgetsBindingObserver {
       // primarySwatch: Colors.grey,
       primaryColor: Colors.black,
       
-      accentColor: Colors.white,
+      // accentColor: Colors.white,
 
       // buttonColor: Colors.blue,
 

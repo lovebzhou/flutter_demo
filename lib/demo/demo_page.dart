@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_demo/demo/animations/demo_animation.dart';
 import 'package:flutter_demo/demo/dialog/dialog_demo.dart';
 import 'package:flutter_demo/demo/dropdown/demo_dropdown_menu.dart';
 import 'package:flutter_demo/demo/file/file_picker_demo.dart';
@@ -13,7 +14,6 @@ import 'package:flutter_demo/demo/navigator/navigator_demo.dart';
 import 'package:flutter_demo/demo/scrollview/demo_nestedscrollview.dart';
 import 'package:flutter_demo/demo/scrollview/scrollview_demo.dart';
 import 'package:flutter_demo/demo/widgets/demo_widgets.dart';
-import 'animations/animation_demo.dart';
 import 'focus_demo/focus_demo.dart';
 
 class Page {
@@ -35,6 +35,7 @@ class _HBDemoPageState extends State<HBDemoPage> {
   final _pages = [
     Page(DemoLayout(), DemoLayout.title),
     Page(ScrollViewDemo(), ScrollViewDemo.title),
+    Page(DemoAnimation(), '动画演示'),
     Page(DialogDemo(), DialogDemo.title),
     Page(DemoWidgets(), DemoWidgets.title),
     Page(NavigatorDemo(), NavigatorDemo.title),
@@ -44,7 +45,6 @@ class _HBDemoPageState extends State<HBDemoPage> {
     Page(FilePickerDemo(), FilePickerDemo.title),
     Page(DemoPhotoPicker(), DemoPhotoPicker.title),
     Page(DemoMultiImagePicker(), DemoMultiImagePicker.title),
-    Page(HBAnimationPage(), HBAnimationPage.title),
     Page(DemoAlicePage(), DemoAlicePage.title),
     Page(HBFocusPage(), HBFocusPage.title),
     Page(DemoImage(), DemoImage.title),
