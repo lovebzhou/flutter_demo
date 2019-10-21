@@ -15,6 +15,7 @@ class DemoAlign extends StatelessWidget {
         ClipRect(
           child: Align(
             child: Container(
+              margin: EdgeInsets.all(8.0),
               child: _buildItem(context, _buildContent(context, 'Text')),
             ),
             heightFactor: 0.5,
@@ -37,6 +38,21 @@ class DemoAlign extends StatelessWidget {
                 ),
               ),
             ],
+          ),
+        ),
+        Container(
+          color: Colors.white30,
+          height: 80.0,
+          width: 100.0,
+          child: ClipRect(
+            child: Align(
+              child: Container(
+                color: Colors.purple,
+                height: 60.0,
+                width: 60.0,
+              ),
+              heightFactor: 0.2,
+            ),
           ),
         ),
         _buildItem(
