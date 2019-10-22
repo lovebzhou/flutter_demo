@@ -70,7 +70,7 @@ class _DemoTabState extends State<DemoTab> with SingleTickerProviderStateMixin {
     Widget body = Column(
       children: <Widget>[
         _buildTabBar(context),
-        _buildTabBar(context),
+        _buildTabBarView(context),
         _buildFooter(context),
       ],
     );
