@@ -11,8 +11,6 @@ import 'package:flutter_demo/demo/image/photo_picker_demo.dart';
 import 'package:flutter_demo/demo/layout/demo_layout.dart';
 import 'package:flutter_demo/demo/log/demo_alice.dart';
 import 'package:flutter_demo/demo/navigator/navigator_demo.dart';
-import 'package:flutter_demo/demo/scrollview/demo_nestedscrollview.dart';
-import 'package:flutter_demo/demo/scrollview/scrollview_demo.dart';
 import 'package:flutter_demo/demo/widgets/demo_widgets.dart';
 import 'focus_demo/focus_demo.dart';
 
@@ -34,13 +32,11 @@ class HBDemoPage extends StatefulWidget {
 class _HBDemoPageState extends State<HBDemoPage> {
   final _pages = [
     Page(DemoLayout(), DemoLayout.title),
-    Page(ScrollViewDemo(), ScrollViewDemo.title),
     Page(DemoAnimation(), '动画演示'),
     Page(DialogDemo(), DialogDemo.title),
     Page(DemoWidgets(), DemoWidgets.title),
     Page(NavigatorDemo(), NavigatorDemo.title),
     Page(DropdownMenuDemo(), DropdownMenuDemo.title),
-    Page(DemoNestedScrollView(), DemoNestedScrollView.title),
     Page(DemoImagePicker(), DemoImagePicker.title),
     Page(FilePickerDemo(), FilePickerDemo.title),
     Page(DemoPhotoPicker(), DemoPhotoPicker.title),
