@@ -14,9 +14,9 @@ class _DemoTabBarState extends State<DemoTabBar>
     {'name': 'tab2'},
     {'name': 'tab3'},
     {'name': 'tab4'},
-    {'name': 'tab5'},
-    {'name': 'tab6'},
-    {'name': 'tab7'},
+    // {'name': 'tab5'},
+    // {'name': 'tab6'},
+    // {'name': 'tab7'},
   ];
 
   List<Widget> _tabs;
@@ -210,6 +210,8 @@ class _ZBTabChildBuilderState extends State<ZBTabChildBuilder>
     });
 
     widget.tabController.animation.addListener(() {
+      if (_tabController.indexIsChanging) return;
+      
       double value0 = _tabController.animation.value;
       double value1 = (value0 - _index);
       double value2 = value1.abs();
