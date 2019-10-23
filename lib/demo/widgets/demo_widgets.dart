@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_demo/demo/widgets/demo_card.dart';
 import 'package:flutter_demo/demo/widgets/demo_grid.dart';
 import 'package:flutter_demo/demo/widgets/demo_list_view_expansion.dart';
-import 'package:flutter_demo/demo/widgets/demo_tab.dart';
+import 'package:flutter_demo/demo/widgets/demo_tab_bar.dart';
 import 'package:flutter_demo/demo/widgets/demo_wrap.dart';
 import 'package:flutter_demo/demo/widgets/scrollview/scrollview_demo.dart';
 import 'package:flutter_demo/utils/navigator_util.dart';
@@ -19,7 +19,7 @@ class DemoWidgets extends StatelessWidget {
       children: <Widget>[
         _buildItem(context, DemoCard.title, DemoCard()),
         _buildItem(context, DemoWrap.title, DemoWrap()),
-        _buildItem(context, DemoTab.title, DemoTab()),
+        _buildItem(context, DemoTabBar.title, DemoTabBar()),
         _buildItem(context, 'Demo ListView', DemoListView()),
         _buildItem(context, 'Demo ListView Expansion', DemoListViewExpansion()),
         _buildItem(context, 'Demo ScrollView', DemoScrollView()),

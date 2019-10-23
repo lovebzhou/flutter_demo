@@ -28,6 +28,10 @@ class _DemoRotationState extends State<DemoRotation>
     _controller = AnimationController(duration: _kDuration, vsync: this);
     _iconTurns = _controller.drive(_halfTween.chain(_easeInTween));
     _iconColor = _controller.drive(_iconColorTween.chain(_easeInTween));
+
+    _controller.addListener(() {
+      print('${_controller.value}');
+    });
   }
 
   @override
@@ -40,7 +44,7 @@ class _DemoRotationState extends State<DemoRotation>
   void didChangeDependencies() {
     _iconColorTween
       ..begin = Colors.grey
-      ..end = Colors.black;
+      ..end = Colors.white;
 
     super.didChangeDependencies();
   }
@@ -87,11 +91,13 @@ class _DemoRotationState extends State<DemoRotation>
   }
 
   Widget _builderBuildChild(BuildContext context, Widget child) {
+
     return InkWell(
       child:
-          RotationTransition(turns: _iconTurns, child: Icon(Icons.expand_more)),
+          RotationTransition(turns: _iconTurns, child: Icon(Icons.expand_more, color: _iconColor.value,)),
       onTap: _handleTap,
     );
+
   }
 
   Widget _buildChild(BuildContext context) {
