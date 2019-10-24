@@ -41,17 +41,10 @@ class _DemoTabBarState extends State<DemoTabBar>
     _tabViews = [];
 
     _tabDatas.forEach((data) {
-      Tab tab = Tab(
-        child: Container(
-          child: Text(data['name']),
-        ),
-      );
-      tab = Tab(
-        child: ZBTabChildBuilder(
-          index: _tabs.length,
-          child: Text(data['name']),
-          tabController: _tabController,
-        ),
+      Widget tab = ZBTab(
+        index: _tabs.length,
+        child: Text(data['name']),
+        tabController: _tabController,
       );
       _tabs.add(tab);
 
@@ -154,13 +147,13 @@ class _DemoTabBarState extends State<DemoTabBar>
 
 const Duration _kDuration = Duration(milliseconds: 200);
 
-class ZBTabChildBuilder extends StatefulWidget {
+class ZBTab extends StatefulWidget {
   final Widget child;
   final int index;
   final TabController tabController;
   final IconData iconData;
 
-  const ZBTabChildBuilder({
+  const ZBTab({
     Key key,
     @required this.child,
     @required this.index,
@@ -169,11 +162,10 @@ class ZBTabChildBuilder extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<StatefulWidget> createState() => _ZBTabChildBuilderState();
+  State<StatefulWidget> createState() => _ZBTabState();
 }
 
-class _ZBTabChildBuilderState extends State<ZBTabChildBuilder>
-    with SingleTickerProviderStateMixin {
+class _ZBTabState extends State<ZBTab> with SingleTickerProviderStateMixin {
   static final Animatable<double> _easeInTween =
       CurveTween(curve: Curves.easeIn);
   final Animatable<double> _halfTween = Tween<double>(begin: 0.0, end: 0.5);
@@ -211,7 +203,7 @@ class _ZBTabChildBuilderState extends State<ZBTabChildBuilder>
 
     widget.tabController.animation.addListener(() {
       if (_tabController.indexIsChanging) return;
-      
+
       double value0 = _tabController.animation.value;
       double value1 = (value0 - _index);
       double value2 = value1.abs();
@@ -255,7 +247,7 @@ class _ZBTabChildBuilderState extends State<ZBTabChildBuilder>
   }
 
   Widget _builderChild(BuildContext context, Widget child) {
-    Widget body = Row(
+    Widget tab = Row(
       children: <Widget>[
         child,
         RotationTransition(
@@ -267,6 +259,9 @@ class _ZBTabChildBuilderState extends State<ZBTabChildBuilder>
         ),
       ],
     );
-    return body;
+    tab = Tab(
+      child: tab,
+    );
+    return tab;
   }
 }
