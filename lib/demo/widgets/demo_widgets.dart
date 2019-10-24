@@ -8,6 +8,7 @@ import 'package:flutter_demo/demo/widgets/scrollview/scrollview_demo.dart';
 import 'package:flutter_demo/utils/navigator_util.dart';
 
 import 'demo_bottom_navigation_bar.dart';
+import 'demo_stack.dart';
 import 'demo_list_view.dart';
 
 class DemoWidgets extends StatelessWidget {
@@ -24,7 +25,8 @@ class DemoWidgets extends StatelessWidget {
         _buildItem(context, 'Demo ListView Expansion', DemoListViewExpansion()),
         _buildItem(context, 'Demo ScrollView', DemoScrollView()),
         _buildItem(context, 'Demo Grid', DemoGridPage()),
-        _buildItem(context, 'Bottom Navigation Bar', DemoBottomNavigationBar())
+        _buildItem(context, 'Bottom Navigation Bar', DemoBottomNavigationBar()),
+        _buildItem(context, 'Demo Stack', DemoStack()),
       ],
     );
 

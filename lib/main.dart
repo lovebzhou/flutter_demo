@@ -17,15 +17,15 @@ class _AppPageState extends State<AppPage> with WidgetsBindingObserver {
 
   @override
   void dispose() {
-
     WidgetsBinding.instance.removeObserver(this);
-    
+
     super.dispose();
   }
+
   @override
   void initState() {
     super.initState();
-    
+
     WidgetsBinding.instance.addObserver(this);
 
     eventBus.on<UserAuthEvent>().listen((e) {
@@ -37,14 +37,14 @@ class _AppPageState extends State<AppPage> with WidgetsBindingObserver {
 
   @override
   Widget build(BuildContext context) {
-    Brightness brightness = Brightness.dark;
+    Brightness brightness = Brightness.light;
     final bool isDark = brightness == Brightness.dark;
+
     ThemeData mainTheme = ThemeData(
       brightness: brightness,
       // primarySwatch: Colors.grey,
-      primaryColor: Colors.black,
-      
-      // accentColor: Colors.white,
+      primaryColor: Colors.blue,
+      accentColor: Colors.yellow,
 
       // buttonColor: Colors.blue,
 
@@ -52,10 +52,20 @@ class _AppPageState extends State<AppPage> with WidgetsBindingObserver {
       // accentColorBrightness: Brightness.dark,
       /// 删除水波纹
       splashColor: Colors.transparent,
+
       /// 删除点击高亮
       highlightColor: Colors.transparent,
-      bottomAppBarColor: isDark ? Colors.grey[800] : Colors.grey[300],
+
+      bottomAppBarTheme: BottomAppBarTheme(elevation: 2.0, color: Colors.grey[200]),
+      tabBarTheme: TabBarTheme(
+        // labelColor: Colors.grey[700],
+        labelStyle: TextStyle(color: Colors.grey[700]),
+        unselectedLabelStyle: TextStyle(color: Colors.grey[500]),
+        unselectedLabelColor: Colors.grey[500],
+
+      ),
     );
+
     return MaterialApp(
       theme: mainTheme,
       home: home,

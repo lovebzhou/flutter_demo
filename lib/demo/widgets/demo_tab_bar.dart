@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_demo/global.dart';
-import 'package:flutter_demo/widgets/tab.dart';
+import 'package:flutter_demo/widgets/tabs.dart';
 
 class DemoTabBar extends StatefulWidget {
   static String title = 'Tab演示';
@@ -42,7 +42,7 @@ class _DemoTabBarState extends State<DemoTabBar>
     _tabViews = [];
 
     _tabDatas.forEach((data) {
-      Widget tab = ZBTab(
+      Widget tab = ZBHorzTab(
         index: _tabs.length,
         child: Text(data['name']),
         tabController: _tabController,

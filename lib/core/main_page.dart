@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_demo/utils/log_util.dart';
+import 'package:flutter_demo/widgets/tabs.dart';
 import 'home/home_page.dart';
 import 'roster/roster_page.dart';
 import 'package:flutter_demo/demo/demo_page.dart';
@@ -44,14 +45,14 @@ class _HBMainPageState extends State<HBMainPage>
     },
   ];
 
-  List _tabBars;
+  List _tabs;
 
   @override
   void initState() {
     super.initState();
 
-    _tabBars = tabDatas
-        .map((data) => Tab(text: data['text'], icon: data['normal']))
+    _tabs = tabDatas
+        .map((data) => ZBVertTab(text: data['text'], icon: data['normal']))
         .toList();
 
     controller =
@@ -71,12 +72,15 @@ class _HBMainPageState extends State<HBMainPage>
     Widget bottomBar = TabBar(
       controller: controller,
       indicatorWeight: 1,
-      tabs: _tabBars,
+      indicatorColor: Colors.transparent,
+      tabs: _tabs,
+      labelStyle: TextStyle(fontSize: 10.0),
+      unselectedLabelStyle: TextStyle(fontSize: 10.0),
     );
 
-    NotchedShape notchedShape; // = CircularNotchedRectangle();
+    NotchedShape notchedShape; 
+    // notchedShape = CircularNotchedRectangle();
     bottomBar = BottomAppBar(
-      color: Theme.of(context).bottomAppBarColor,
       child: bottomBar,
       shape: notchedShape,
     );

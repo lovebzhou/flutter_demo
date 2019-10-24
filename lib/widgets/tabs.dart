@@ -2,13 +2,51 @@ import 'package:flutter/material.dart';
 
 const Duration _kDuration = Duration(milliseconds: 200);
 
-class ZBTab extends StatefulWidget {
+class ZBVertTab extends StatelessWidget {
+  final String text;
+  final Widget child;
+  final Widget icon;
+
+  const ZBVertTab({Key key, this.text, this.icon, this.child})
+      : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    Widget label;
+    if (icon == null) {
+      label = _buildLabelText();
+    } else if (text == null && child == null) {
+      label = icon;
+    } else {
+      label = Column(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          Container(
+            child: icon,
+            margin: const EdgeInsets.only(bottom: 6.0),
+          ),
+          _buildLabelText(),
+        ],
+      );
+    }
+    label = SizedBox(child: label, height: 56,);
+    return label;
+  }
+
+  Widget _buildLabelText() {
+    return child ?? Text(text, softWrap: false, overflow: TextOverflow.fade);
+  }
+}
+
+///
+class ZBHorzTab extends StatefulWidget {
   final Widget child;
   final int index;
   final TabController tabController;
   final IconData iconData;
 
-  const ZBTab({
+  const ZBHorzTab({
     Key key,
     @required this.child,
     @required this.index,
@@ -17,10 +55,11 @@ class ZBTab extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<StatefulWidget> createState() => _ZBTabState();
+  State<StatefulWidget> createState() => _ZBHorzTabState();
 }
 
-class _ZBTabState extends State<ZBTab> with SingleTickerProviderStateMixin {
+class _ZBHorzTabState extends State<ZBHorzTab>
+    with SingleTickerProviderStateMixin {
   static final Animatable<double> _easeInTween =
       CurveTween(curve: Curves.easeIn);
   final Animatable<double> _halfTween = Tween<double>(begin: 0.0, end: 0.5);
@@ -33,8 +72,6 @@ class _ZBTabState extends State<ZBTab> with SingleTickerProviderStateMixin {
 
   TabController get _tabController => widget.tabController;
   int get _index => widget.index;
-
-  // bool _isSelected => ;
 
   @override
   void initState() {
@@ -85,9 +122,12 @@ class _ZBTabState extends State<ZBTab> with SingleTickerProviderStateMixin {
 
   @override
   void didChangeDependencies() {
+    Color endColor = Theme.of(context).brightness == Brightness.dark
+        ? Colors.white
+        : Colors.black;
     _iconColorTween
       ..begin = Colors.grey
-      ..end = Colors.white;
+      ..end = endColor;
 
     super.didChangeDependencies();
   }
@@ -114,8 +154,13 @@ class _ZBTabState extends State<ZBTab> with SingleTickerProviderStateMixin {
         ),
       ],
     );
-    tab = Tab(
+    // tab = Container(
+    //   height: 40.0,
+    //   child: Center(child: tab),
+    // );
+    tab = Container(
       child: tab,
+      padding: EdgeInsets.only(top: 6.0, bottom: 6.0),
     );
     return tab;
   }
